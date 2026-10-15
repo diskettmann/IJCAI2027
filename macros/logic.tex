@@ -1,0 +1,55 @@
+%% propositional logic
+\newcommand{\Atom}{\mathcal{A}}%
+\newcommand{\formula}{\varphi}%
+\newcommand{\formulaalt}{\psi}%
+\newcommand{\sub}[1]{\mathrm{sub}'(#1)}%
+\newcommand{\subi}[1]{\mathrm{sub}(#1)}%
+\newcommand{\bigland}{\bigwedge}
+\newcommand{\biglor}{\bigvee}
+\newcommand{\limplies}{\rightarrow}
+\newcommand{\lonlyif}{\leftarrow}
+\newcommand{\liff}{\leftrightarrow}
+\newcommand{\lxor}{\oplus} %{\not\leftrightarrow}
+% propositional language
+\newcommand{\lpl}{\mathfrak{L}}%
+% first-order logic
+\newcommand{\svec}[1]{\vec{#1}\,}
+% prototypical quantifier
+\newcommand{\Q}{\rotatebox[origin=c]{180}{\scalebox{0.90}{\raisebox{-1.6ex}[0ex][0ex]{$\mathsf{Q}$}}}}
+%% distinguishing model relation and entailment relation, as they have different types: (Interpretation, Formula) vs. (Set of Formula, Formula)
+\newcommand{\entails}{\models}
+% truth values
+\def\tvt{\mathbf{t}}
+\def\tvf{\mathbf{f}}
+\def\two{\set{\tvt,\tvf}}
+\def\tvu{\mathbf{u}}
+\def\three{\set{\tvt,\tvf,\tvu}}
+\def\tvi{\mathbf{i}}
+\def\four{\set{\tvt,\tvf,\tvu,\tvi}}
+%% unit interval 
+\newcommand{\I}{[0;1]}
+% non-monotonic reasoning
+\newcommand{\dentails}{\mathbin{\mid\mathrel{\mkern-3.6mu}\approx}}
+%% fuzzy logic
+\newcommand{\flnot}{\mathord{\sim}}
+\newcommand{\flneg}{\neg}
+\newcommand{\fland}{\land}
+\newcommand{\flor}{\lor}
+\newcommand{\bigfland}{\bigwedge}
+\newcommand{\bigflor}{\bigvee}
+\newcommand{\flif}{\rightarrow}
+\newcommand{\flonlyif}{\leftarrow}
+\newcommand{\fliff}{\leftrightarrow}
+\newcommand{\flcon}{f}
+\newcommand{\Flcon}{\mathcal{F}}
+\newcommand{\flcontf}[1]{\mathbin{\dot{#1}}}
+\newcommand{\flcontfp}[1]{\mathbin{\ddot{#1}}}
+\newcommand{\finttf}[1]{\hat{#1}}
+\newcommand{\flnottf}{\mathord{\flcontf{\flnot}}}
+\newcommand{\flnegtf}{\mathord{\flcontf{\flneg}}}
+\newcommand{\iset}{K}
+
+
+
+
+

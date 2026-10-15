@@ -1,0 +1,50 @@
+%% LaTeX macros for logic programming
+\newcommand{\lpr}{r}
+\newcommand{\hr}[1]{H(#1)}
+\newcommand{\br}[1]{B(#1)}
+\newcommand{\pbr}[1]{B(#1)^+}
+\newcommand{\nbr}[1]{B(#1)^-}
+\newcommand{\lpif}{\gets}
+\newcommand{\lpand}{\land}
+%\newcommand{\lpnot}{\neg}
+\newcommand{\lpnot}{\mathord{\sim}}
+\newcommand{\lpatoms}[1]{\mathcal{A}(#1)}
+\newcommand{\lits}[1]{\mathcal{L}(#1)}
+\newcommand{\compl}[1]{\mathcal{C}(#1)}
+\newcommand{\aset}{\mathfrak{S}}
+
+
+% literals
+\newcommand{\literals}[1]{#1^{\pm}}
+\newcommand{\dnliterals}[1]{#1^{\pm-}}
+\newcommand{\nliterals}[1]{#1^{-}}
+\newcommand{\literal}{\ell}
+% example logic program
+\newcommand{\elp}{P}
+
+
+
+\newcommand{\A}[1][\lp]{\mathcal{A}(#1)}
+\newcommand{\AS}[1][\lp]{\mathcal{AS}(#1)}                    %
+\newcommand{\BC}[1][\lp]{\mathcal{BC}(#1)}                    %
+\newcommand{\CC}[1][\lp]{\mathcal{CC}(#1)}                    %
+\newcommand{\F}[1][\lp]{\mathcal{F}(#1)}                      %
+\newcommand{\FI}[1][\lp]{\mathcal{F}^+(#1)}                   %
+\newcommand{\FE}[1][\lp]{\mathcal{F}^-(#1)}                   %
+\newcommand{\FA}[1][\lp]{\mathcal{F}_{a}(#1)}                 %
+\newcommand{\SA}[2][\lp]{S^{\models_{#1} #2}}                 %
+\newcommand{\NSA}[2][\lp]{S^{\not \models_{#1} #2}}           %
+\newcommand{\C}[2]{\mathcal{C}(#1, #2)}                       %
+\newcommand{\MC}[2]{\mathcal{MC}(#1, #2)}                     %
+\newcommand{\DF}[1][\lp]{\mathcal{DF}(#1)}                    %
+
+\newcommand{\trans}[3][\lp]{#1 \overset{#2}{\Rightarrow} #3}  %
+
+\newcommand{\route}[1][]{\langle #1 \rangle}                  %
+\newcommand{\De}[2][\lp]{\Delta^{#1}_{#2}}                    %
+\newcommand{\RE}[2][f]{\mathcal{R}(#2, #1)}                   %
+\newcommand{\MRE}[2][f]{\mathcal{MR}(#2, #1)}                 %
+
+\newcommand{\vgo}[1][]{\nu_{\mathit{go}}#1}                   %
+\newcommand{\vfr}[1][]{\nu_{\mathit{free}}#1}                 %
+\newcommand{\pace}[2]{\mathcal{P}_{#1}(#2)}             %

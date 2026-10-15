@@ -1,0 +1,370 @@
+\onecolumn
+\section*{Overview of \LaTeX~Macros for Authors}
+
+\bgroup
+\renewcommand{\arraystretch}{1.4}
+\begin{longtable}{lp{0.38\textwidth}p{0.3\textwidth}}
+    \textbf{symbol} & \textbf{macro} & \textbf{meaning/usage} \\
+    \endfirsthead
+
+    \textbf{symbol} & \textbf{macro} & \textbf{meaning/usage} \\
+    \hline
+    \endhead
+
+    \hline
+    \multicolumn{3}{r}{\textit{Continued on next page}}       \\
+    \hline
+    \endfoot
+
+    \hline
+    \endlastfoot
+    \taexheading{general}
+    \taexp{\set{a,b}}{set with elements $a,b$}
+    \taex{\pset{X}}{power set of $X$}
+    \taex{\sset{a,b}}{set with elements $a,b$}
+    \taexp{\set{\guard}}{set-builder notation vertical bar}
+    \taexp{\card{S}}{cardinality of set $S$}
+    \taexp{\tuple{a,b}}{tuple with components $a,b$}
+    \taexp{\eqdef}{define a set}
+    \taexp{\iffdef}{define a predicate}
+    \taexp{\tand}{inserts text "and" with proper spacing}
+    \taex{\timplies}{inserts text "implies" with proper spacing}
+    \taexp{\define{term}}{highlight terms being defined}
+    \taex{a \ts b}{insert thin space}
+    \taex{a \nts b}{insert negative thin space}
+    \taexp{\ebnfeq}{production rule}
+    \taexp{\ebnfalt}{alternative in EBNF syntax}
+    \taexp{\N}{natural numbers}
+    \taex{\Z}{integers}
+    \taexp{\R}{real numbers}
+    \taexp{\ordn}{ordinal number}
+    \taexp{\ordsucc}{successor ordinal}
+    \taexp{\ordlim}{limit ordinal}
+    \taexn{\defineas{term}{x}}{highlight terms being defined (second argument ignored)}
+    \taexp{\ordnalt}{second ordinal number}
+    \taexn{\ghost{x}}{zero-width text box}
+    \taexn{\Tstrut}{top strut}
+    \taexn{\Bstrut}{bottom strut}
+    \taexn{\Strut}{top and bottom strut}
+    \taex{\maxo}{max function}
+    \taex{\mino}{min function}
+    \taexheading{lattice}
+    \taexp{\lset}{plain lattice carrier set}
+    \taexp{\lleq}{plain lattice ordering}
+    \taexp{\llt}{plain lattice strict ordering}
+    \taex{\lgeq}{plain lattice reverse ordering}
+    \taex{\lgt}{plain lattice strict reverse ordering}
+    \taexp{\lub}{binary infix plain lattice least upper bound}
+    \taexp{\glb}{binary infix plain lattice greatest lower bound}
+    \taexp{\biglub}{arbitrary-set prefix plain lattice lub}
+    \taexp{\bigglb}{arbitrary-set prefix plain lattice glb}
+    \taexp{\bil[\lset]}{bilattice based on $\lset$}
+    \taexp{\pleq}{precision ordering in bilattice}
+    \taexp{\plt}{strict precision ordering}
+    \taexp{\plub}{lub in bilattice $(\bil,\pleq)$}
+    \taexp{\pglb}{glb in bilattice $(\bil,\pleq)$}
+    \taexp{\tleq}{truth ordering in bilattice}
+    \taex{\tlt}{strict truth ordering}
+    \taexp{\tlub}{lub in bilattice $(\bil,\tleq)$}
+    \taexp{\tglb}{glb in bilattice $(\bil,\tleq)$}
+    \taex{\bic[\lset]}{consistent bilattice based on $\lset$}
+    \taexp{\lfp}{least fixpoint}
+    \taexp{\gfp}{greatest fixpoint}
+    \taexn{\lelem}{lattice element}
+    \taexn{\lelemalt}{second lattice element}
+    \taexp{\least}{least element of a lattice}
+    \taexp{\grtst}{greatest element of a lattice}
+    \taexn{\upperb{x}}{upper bound of $x$}
+    \taexn{\lowerb{x}}{lower bound of $x$}
+    \taexn{\upset{x}}{up-set of $x$}
+    \taexn{\downset{x}}{down-set of $x$}
+    \taexn{\parset}{subset of a lattice}
+    \taexn{\ibot}{least element w.r.t. the precision ordering}
+    \taexn{\itop}{greatest element w.r.t. the precision ordering}
+    \taexn{\tbot}{least element w.r.t. the truth ordering}
+    \taexn{\ttop}{greatest element w.r.t. the truth ordering}
+    \taexn{\ileq}{information ordering}
+    \taexn{\ilt}{strict information ordering}
+    \taexp{\bigplub}{arbitrary-set prefix lub in bilattice $(\bil,\pleq)$}
+    \taexn{\bigtlub}{arbitrary-set prefix lub in bilattice $(\bil,\tleq)$}
+    \taexn{\bigtglb}{arbitrary-set prefix glb in bilattice $(\bil,\tleq)$}
+    \taexn{\opleq}{operator precision ordering}
+    \taexheading{logic-programs}
+    \taex{\lp}{logic program}
+    \taex{\lpr}{logic progam rule}
+    \taexp{\lpif}{logic programming if}
+    \taexp{\lpand}{logic programming and}
+    \taexp{\lpnot}{default negation}
+    \taex{\lpatoms{\lp}}{atoms occuring in $\lp$}
+    \taex{\hr{\lpr}}{head of rule $\lpr$}
+    \taex{\br{\lpr}}{body of rule $\lpr$}
+    \taex{\pbr{\lpr}}{positive body of rule $\lpr$}
+    \taex{\nbr{\lpr}}{negative body of rule $\lpr$}
+    \taex{\aset}{answer set}
+    \taex{\AS[\lp]}{answer sets of tight normal program $\lp$}
+    \taex{\compl{\lp}}{completion of normal program $\lp$}
+    \taexn{\lits{\lp}}{literals of $\lp$}
+    \taexp{\literals{\Atom}}{literals over $\Atom$}
+    \taexn{\dnliterals{\Atom}}{literals over $\Atom$ with default negation}
+    \taexp{\nliterals{\Atom}}{negated atoms over $\Atom$}
+    \taexp{\literal}{literal}
+    \taexp{\elp}{extended logic program}
+    \taexn{\A[\lp]}{atoms of the default program (optionally of a given one)}
+    \taexn{\BC[\lp]}{set $\mathcal{BC}$ of the default program (optionally of a given one)}
+    \taexn{\CC[\lp]}{set $\mathcal{CC}$ of the default program (optionally of a given one)}
+    \taexn{\F[\lp]}{set $\mathcal{F}$ of the default program (optionally of a given one)}
+    \taexn{\FI[\lp]}{set $\mathcal{F}^+$ of the default program (optionally of a given one)}
+    \taexn{\FE[\lp]}{set $\mathcal{F}^-$ of the default program (optionally of a given one)}
+    \taexn{\FA[\lp]}{set $\mathcal{F}_a$ of the default program (optionally of a given one)}
+    \taexn{\SA[\lp]{x}}{set $S^{\models_{\lp} x}$ for the default program}
+    \taexn{\NSA[\lp]{x}}{set $S^{\not\models_{\lp} x}$ for the default program}
+    \taexn{\C{x}{y}}{set $\mathcal{C}(x,y)$}
+    \taexn{\MC{x}{y}}{set $\mathcal{MC}(x,y)$}
+    \taexn{\DF[\lp]}{set $\mathcal{DF}$ of the default program (optionally of a given one)}
+    \taexn{\trans[\lp]{a}{b}}{transition from $\lp$ to $b$ labelled $a$}
+    \taexn{\route[x]}{route $\langle x\rangle$}
+    \taexn{\De[\lp]{x}}{$\Delta$ indexed by program and $x$}
+    \taexn{\RE[f]{x}}{$\mathcal{R}(x,f)$}
+    \taexn{\MRE[f]{x}}{$\mathcal{MR}(x,f)$}
+    \taexn{\vgo}{valuation $\nu_{\mathit{go}}$}
+    \taexn{\vfr}{valuation $\nu_{\mathit{free}}$}
+    \taexn{\pace{x}{y}}{$\mathcal{P}_x(y)$}
+    \taexheading{AFT}
+    \taexp{\fst{x}}{first component of $x$}
+    \taexp{\snd{x}}{second component of $x$}
+    \taexn{x\first}{first-component marker (prime)}
+    \taexn{x\second}{second-component marker (double prime)}
+    \taexp{\op}{operator}
+    \taexp{\ap}{approximating operator}
+    \taexn{\opap}{approximating operator on $\opap$}
+    \taexn{\apa}{first component of $\ap$}
+    \taexn{\apb}{second component of $\ap$}
+    \taexp{\stable{x}}{stable version of $x$}
+    \taexp{\stap}{stable operator of $\ap$}
+    \taexn{\opst}{stable operator of $\opap$}
+    \taexp{\complete{x}}{stable operator $x$ on pairs (completed)}
+    \taexn{\lpoperator{T}{\lp}}{operator $T$ indexed by $\lp$}
+    \taexp{\lpop[\lp]}{immediate consequence operator of $\lp$}
+    \taexn{\lpopp}{immediate consequence operator of $\lp$}
+    \taexp{\lpap[\lp]}{approximating operator of $\lp$}
+    \taexn{\lpapp}{approximating operator of $\lp$}
+    \taexn{\lpappa}{first component of $\lpapp$}
+    \taexn{\lpappb}{second component of $\lpapp$}
+    \taexn{\lpsu{\lp}}{immediate consequence operator of $\lp$}
+    \taexn{\lpst{\lp}}{stable operator of $\lpap{\lp}$}
+    \taexn{\af}{argumentation framework}
+    \taexn{\afop{\af}}{operator of $\af$}
+    \taexn{\afopp}{operator of $\af$}
+    \taexn{\afap{\af}}{approximating operator of $\af$}
+    \taexn{\afapp}{approximating operator of $\af$}
+    \taexn{\bp}{background program}
+    \taexp{\ult{\op}}{ultimate operator of $\op$}
+    \taexn{\ultap}{ultimate approximating operator}
+    \taexn{\ultimate{\op}}{ultimate approximating operator of $\op$}
+    \taexp{\ultop}{ultimate operator of $\op$}
+    \taexp{\ultlpop}{ultimate operator of $\flp$}
+
+
+
+    \taexheading{logic}
+    \taexp{\atom}{atom}
+    \taex{\Atom}{set of atoms (vocabulary)}
+    \taexp{\formula}{formula}
+    \taex{\sub{\formula}}{subformulas of $\formula$}
+    \taex{\subi{\formula}}{immediate subformulas of $\formula$}
+    \taexp{\tvt}{truth value "true"}
+    \taexp{\tvf}{truth value "false"}
+    \taexp{\tvu}{truth value "unknown"}
+    \taexp{\tvi}{truth value "inconsistent}
+    \taex{\I}{unit interval}
+    \taexp{\pair{x}}{notation for pairs $\pair{x}\in\I^2$}
+    \taex{\flcon^{(n)}}{$n$-ary fuzzy connective}
+    \taex{\flcontf{\flcon}}{truth function of $n$-ary fuzzy connective $\flcon$}
+    \taex{\flcontfp{\flcon}}{extention of $\flcontf{\flcon}$ to pairs}
+    \taex{\Flcon}{family of many valued connectives}
+    \taex{\iset}{index set}
+    \taex{\fland}{many valued conjunction}
+    \taex{\flor}{many valued disjunction}
+    \taex{\flif}{many valued implication}
+    \taex{\flnot}{default negation}
+    \taex{\flneg}{classical negation}
+    \taexp{\formulaalt}{second formula}
+    \taexn{\bigland}{big conjunction}
+    \taexn{\biglor}{big disjunction}
+    \taexn{\limplies}{implication}
+    \taexn{\lonlyif}{reverse implication}
+    \taexn{\liff}{equivalence}
+    \taexn{\lxor}{exclusive or}
+    \taexn{\lpl}{propositional language}
+    \taexn{\svec{x}}{vector $x$ with trailing thin space}
+    \taexp{\Q}{prototypical quantifier}
+    \taexn{\entails}{entailment}
+    \taexn{\dentails}{non-monotonic entailment}
+    \taexn{\two}{truth values $\{\tvt,\tvf\}$}
+    \taexn{\three}{truth values $\{\tvt,\tvf,\tvu\}$}
+    \taexn{\four}{truth values $\{\tvt,\tvf,\tvu,\tvi\}$}
+    \taexn{\bigfland}{big many valued conjunction}
+    \taexn{\bigflor}{big many valued disjunction}
+    \taexn{\flonlyif}{many valued reverse implication}
+    \taexn{\fliff}{many valued equivalence}
+    \taexn{\finttf{x}}{hat on $x$}
+    \taexn{\flnottf}{truth function of $\flnot$}
+    \taexn{\flnegtf}{truth function of $\flneg$}
+
+
+
+    \taexheading{lnn}
+    \taex{\upo_{\itp}(\formula)}{upward pass of formula $\formula$ w.r.t. interpretation $\itp$}
+    \taex{\dpo_{\itp}(\formula)}{downward pass of formula $\formula$ w.r.t. interpretation $\itp$}
+    \taex{\bch{x}_v}{trivial bound propagation function}
+    \taex{\Upop_{\formula}(\itp)}{upward operator w.r.t. to formula $\formula$}
+    \taex{\Dpop_{\formula}(\itp)}{downward operator w.r.t. to formula $\formula$}
+    \taex{\dpneg}{downward pass (symmetric) negation}
+    \taex{\dpif}{downward pass (symmetric) implication}
+    \taex{\dpand}{downward pass (symmetric) conjunction}
+    \taex{\lowb{\pair{x}}}{lower bound of $\pair{x}$}
+    \taex{\upb{\pair{x}}}{upper bound of $\pair{x}$}
+    \taexn{\lnn}{abbreviation for LNN}
+    \taexn{\Upo_{\itp}(\formula)}{upward pass of $\formula$ (double arrow)}
+    \taexn{\Dpo_{\itp}(\formula)}{downward pass of $\formula$ (double arrow)}
+    \taexn{\rev{x}}{reversal of $x$}
+    \taexn{\lneg\formula}{negation in LNNs}
+    \taexn{\signature}{signature}
+    \taexn{\aggb}{aggregation (small)}
+    \taexn{\Aggb}{aggregation (large)}
+    \taexn{\itp}{interpretation}
+    \taexn{\Itp}{set of interpretations}
+    \taexn{\inti{\formula}}{interpretation of $\formula$}
+    \taexn{\dpor}{downward pass (symmetric) disjunction}
+    \taexheading{flp}
+    \taexheading{reconstructions}
+    \taexheading{flp}
+    \taexn{\propL}{propositional language}
+    \taexp{\flpcon}{fuzzy logic program connective}
+    \taexp{\Flpcon}{family of fuzzy logic program connectives}
+    \taexp{\Atoms}{atoms of the vocabulary}
+    \taexn{\Atomsalt}{second set of atoms}
+    \taexp{\flpatom}{atoms occurring in the program}
+    \taexp{\litset}{literal set}
+    \taexp{\litsetalt}{second literal set}
+    \taexp{\litsetsup[i]{j}}{indexed literal set}
+    \taexp{\litsetaltsup[i]{j}}{indexed second literal set}
+    \taexp{\fint}{fuzzy interpretation}
+    \taexp{\fintalt}{second fuzzy interpretation}
+    \taexp{\fintsup[i]{j}}{indexed fuzzy interpretation}
+    \taexp{\fintaltsup[i]{j}}{indexed second fuzzy interpretation}
+    \taexp{\fintset}{set of fuzzy interpretations}
+    \taexp{\Fint}{set of fuzzy interpretations}
+    \taexp{\lint}{lower bound interpretation}
+    \taexp{\uint}{upper bound interpretation}
+    \taexp{\lintalt}{second lower bound interpretation}
+    \taexp{\uintalt}{second upper bound interpretation}
+    \taexp{\lintsup[i]}{indexed lower bound interpretation}
+    \taexp{\uintsup[i]}{indexed upper bound interpretation}
+    \taexn{\fintpair}{pair of interpretations}
+    \taexn{\fintpairalt}{second pair of interpretations}
+    \taexn{\fintpairsup[k]}{indexed pair of interpretations}
+    \taexn{\fintpairaltsup[k]}{indexed second pair of interpretations}
+    \taexp{\nint}{non-paraconsistent interpretation}
+    \taexp{\nintalt}{second non-paraconsistent interpretation}
+    \taexp{\Nint}{set of non-paraconsistent interpretations}
+    \taexp{\eint}{extended interpretation}
+    \taexp{\eintalt}{second extended interpretation}
+    \taexp{\Eint}{set of extended interpretations}
+    \taexp{\dom[\eint]}{domain of an extended interpretation}
+    \taexp{\fformeval{\formula}{\fint}}{evaluation of $\formula$ under $\fint$}
+    \taexn{\fformnoteval{\fint}{\formula}}{$\formula$ superscripted by $\fint$}
+    \taexp{\fnnformeval{\formula}{\fint}}{double evaluation of $\formula$ under $\fint$}
+    \taexp{\fnformeval{\fint}{\fintalt}{\formula}}{evaluation of $\formula$ under a pair of interpretations}
+    \taexp{\flpcontf{\flpcon}}{truth function of $\flpcon$}
+    \taexn{\flpcontff{\flpcon}}{extended truth function of $\flpcon$}
+    \taexp{\nfformeval{\formula}{\nint}}{evaluation of $\formula$ under $\nint$}
+    \taexn{\nfnnformeval{\formula}{\nint}}{double evaluation of $\formula$ under $\nint$}
+    \taexp{\nfnformeval{\nint}{\nintalt}{\formula}}{evaluation of $\formula$ under a pair of interpretations}
+    \taexp{\flpnotf}{truth function of $\flpnot$}
+    \taexp{\flpnotff}{extended truth function of $\flpnot$}
+    \taexp{\flpnegf}{truth function of $\flpneg$}
+    \taexn{\flpnegff}{extended truth function of $\flpneg$}
+    \taexp{\flpif{\flpweight}}{weighted rule implication}
+    \taexp{\flpnot}{default negation}
+    \taexp{\flpneg}{classical negation}
+    \taexp{\flpand}{conjunction}
+    \taexp{\flpor}{disjunction}
+    \taexp{\flpagg}{aggregation}
+    \taexp{\flpweight}{rule weight}
+    \taexp{\flp}{fuzzy logic program}
+    \taexn{\flpoperator{T}{\flp}}{operator $T$ indexed by $\flp$}
+    \taexp{\flpop[\flp]}{immediate consequence operator of $\flp$}
+    \taexn{\flpap{\flp}}{approximating operator of $\flp$}
+    \taexn{\flpapp}{approximating operator of $\flp$}
+    \taexp{\flpr}{weighted rule}
+    \taexn{\flprUW}{unweighted rule}
+    \taexn{\nflpr}{weighted rule with classically negated head}
+    \taexn{\nflprUW}{unweighted rule with classically negated head}
+    \taexn{\lflpr}{weighted rule with literal head}
+    \taexp{\flprRed[\fint]}{reduct of a weighted rule}
+    \taexp{\eflpr}{extended rule with literal head}
+    \taexp{\eflprp}{extended rule with atom head}
+    \taexp{\eflprn}{extended rule with classically negated head}
+    \taexp{\body}{rule body}
+    \taexp{\pbody}{positive rule body}
+    \taexp{\nbody}{negative rule body}
+    \taexn{\head}{rule head}
+    \taexp{\bodies[\literal]}{set of bodies of rules with head $\literal$}
+    \taexp{\flpcontfStraccia{\flpcon}}{truth function of $\flpcon$ (Straccia)}
+    \taexp{\TpStraccia[\flp]}{Straccia operator}
+    \taexp{\FpStraccia[\flp]{x}}{Straccia operator for $x$}
+    \taexp{\SpStraccia}{Straccia sequence element}
+    \taexp{\WFStraccia}{Straccia well-founded model}
+    \taexn{\cwa}{closed world assumption}
+    \taexp{\flptext}{abbreviation FLP}
+    \taexp{\flpstext}{abbreviation FLPs}
+    \taexp{\pflptext}{abbreviation pFLP}
+    \taexn{\pflpstext}{abbreviation pFLPs}
+    \taexp{\nflptext}{abbreviation nFLP}
+    \taexp{\nflpstext}{abbreviation nFLPs}
+    \taexp{\eflptext}{abbreviation eFLP}
+    \taexp{\eflpstext}{abbreviation eFLPs}
+    \taexn{\nflp}{non-paraconsistent fuzzy logic program}
+    \taexp{\mopo}{modus ponens inference candidate}
+    \taexn{\epred{drive}}{predicate-style text}
+    \taexn{\drive}{example predicate}
+    \taexn{\obstacle}{example predicate}
+    \taexn{\camera}{example predicate}
+    \taexn{\proximity}{example predicate}
+    \taexp{\ann{a}{b}}{annotation $b$ on $a$}
+    \taexp{\gecon{x}}{greater-or-equal annotation connective}
+    \taexn{\gtcon[0]}{greater-than annotation connective}
+    \taexp{\Saadop}{Saad fixpoint operator}
+    \taexp{\SaadP}{Saad program}
+    \taexp{\Saadredr[\eint]}{reduct of a Saad rule}
+    \taexp{\Saadredp[\eint]}{reduct of a Saad program}
+    \taexp{\litTolit[\eint]}{map from literal interpretations to pairs}
+    \taexn{\headminus[\atom]}{remainder of the head after removing $\atom$}
+    \taexheading{reconstructions}
+    \taexn{\patom}{possibilistic atom}
+    \taexn{\pAtoms}{set of possibilistic atoms}
+    \taexn{\pform}{possibilistic formula}
+    \taexn{\proj[\patom]}{projection of an atom}
+    \taexn{\prule}{possibilistic rule}
+    \taexn{\pRules}{set of possibilistic rules}
+    \taexn{\pflp}{possibilistic program}
+    \taexn{\pflpalt}{second possibilistic program}
+    \taexn{\Pint}{possibilistic interpretations}
+    \taexn{\possleq}{possibilistic ordering}
+    \taexn{\pnec}{necessity degree}
+    \taexn{\pint}{possibilistic interpretation}
+    \taexn{\pintalt}{second possibilistic interpretation}
+    \taexn{\projrule[\prule]}{projection of a rule}
+    \taexn{\PintToFint}{map from possibilistic to fuzzy interpretations}
+    \taexn{\possglb}{possibilistic glb}
+    \taexn{\posslub}{possibilistic lub}
+    \taexn{\pred{x}{y}}{$x$ superscripted by $y$}
+    \taexn{\PLinf}{possibilistic inference}
+    \taexn{\GGPPE}{generalised possibilistic operator}
+    \taexn{\plpop}{possibilistic immediate consequence operator}
+    \taexn{\Semmin{\pflp}}{minimal semantics of $\pflp$}
+    \taexn{\pFacts{x}{y}}{facts of $x$ with respect to $y$}
+    \taexn{\PosToFuz{x}}{translation of $x$ to fuzzy programs}
+\end{longtable}
+\egroup

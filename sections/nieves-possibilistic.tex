@@ -1,0 +1,147 @@
+\subsection{Semantics for Possibilistic Disjunctive Programs \protect\cite{Nieves2007possibilisitc}}
+
+A \define{possibilistic atom} is a pair $\patom = (\atom, \lelem)\in\Atoms\times\lset$, where $\Atoms$ is a finite set of atoms and $(\lset, \leq)$ is a lattice.
+The \define{projection} $*$ is defined as $\proj = \atom$ and $S^{*} = \set{\proj[\pAtoms] \guard \patom\in\pAtoms}$ for a set of possibilistic atoms $\pAtoms$.
+
+A \emph{possibilistic disjunctive rule} $\prule$ has the form
+\[
+    \lelem : \atom_1\flpor\dots\flpor\atom_n \lpif \pbody, \flpnot\;\nbody
+\]
+where $\lelem\in\lset$ and $\atom \lpif \pbody, \flpnot\;\nbody$ is an
+extended disjunctive rule. The projections are:
+\[
+    \proj[\prule] = \head \lpif \pbody, \flpnot\;\nbody, \qquad
+    \projrule  = \lelem.
+\]
+
+A \define{possibilistic disjunctive logic program} $\pflp$ is a tuple $\tuple{(\lset,\leq),\pRules}$ where $\pRules$ is a finite set of possibilistic disjunctive rules (and possibilistic constraints).
+Its projection is $\proj[\pflp] = \set{ \proj[\prule] \guard \prule\in\pRules }$ (which is an extended disjunctive program).
+
+(Complete) Lattice of interest: $(\Pint,\possleq)$, where $\Pint\subseteq\Pint'=\pset{\Atoms\times\lset}$ is "the finite set of all the possibilistic atom sets induced by a set of atoms $\Atoms$ and $\lset$"
+\[
+    \Pint = \Pint'\setminus\set{\pint\in\Pint\guard \exists\atom\in\Atoms\colon\card{\set{(\atom,\lelem)\mid (\atom,\lelem)\in\Pint}}\geq2}
+\]
+and $\forall \pint,\pintalt\in\Pint$
+\begin{align*}
+    \pint\possglb\pintalt  & = \set{(\atom,\lelem\glb\lelemalt)\guard (\atom,\lelem)\in\pint \tand (\atom,\lelemalt)\in\pintalt}                                                                                                       \\
+    \pint\posslub\pintalt  & = \set{(\atom,\lelem\lub\lelemalt)\guard (\atom,\lelem)\in\pint \tand (\atom,\lelemalt)\in\pintalt} \cup \set{(\atom,\lelem)\guard (\atom,\lelem)\in\pint \tand \atom\notin\proj[\pintalt]}               \\
+                           & \phantom{=}            \cup \set{(\atom,\lelem)\guard (\atom,\lelem)\in\pint \tand \atom\notin\proj[\pint]}                                                                                               \\
+    \pint \preceq \pintalt & \iff \proj[\pint] \subseteq \proj[\pintalt] \tand \forall \atom\in\Atoms\tand\forall\lelem,\lelemalt\in\lset\colon (\atom,\lelem)\in\pint \tand (\atom,\lelemalt)\in\pintalt\timplies \lelem\leq\lelemalt
+\end{align*}
+
+\begin{proposition}
+    The map $\PintToFint\colon\Pint\to\Fint$ defined by
+
+    \[
+        \PintToFint(\pint)(\atom)\eqdef
+        \begin{cases}
+            \lelem & \text{if } (\atom, \lelem) \in\pint, \\
+            \least & \text{if } \atom\notin \proj[\pint],
+        \end{cases}
+    \]
+    is a lattice homomorphism from $(\Pint,\possleq)$ to $(\Fint,\lleq)$.
+    That is, for all $\pint,\pintalt\in\Pint$ and all $\atom\in \Atoms$:
+    \begin{align}
+        \PintToFint(\pint\possglb\pintalt)(\atom) & = \PintToFint(\pint)(\atom)\glb\PintToFint(\pintalt)(\atom) \\
+        \PintToFint(\pint\posslub\pintalt)(\atom) & = \PintToFint(\pint)(\atom)\lub\PintToFint(\pintalt)(\atom)
+    \end{align}
+    \begin{proof}
+        This can be proven by a case distinction on the membership of  $\atom\in\Atoms$ in $\pint$ and $\pintalt$.
+
+        % Note that for every $\atom\in\Atoms$ there is at most one $\lelem\in\lset$ with $(\atom,\lelem)\in\pint$, and $\atom\in\proj[\pint]$ iff this $\lelem$ exists, in which case $\PintToFint(\pint)(\atom) = \lelem$; otherwise $\PintToFint(\pint)(\atom)=\least$.
+    \end{proof}
+\end{proposition}
+
+Let $\pflp = \tuple{(\lset,\leq),\pRules}$ be a possibilistic disjunctive logic program and $\Atomsalt\subseteq\Atoms$ a set of atoms.
+The \define{reduction of $\pflp$ by $\Atomsalt$}, denoted $\pred{\pflp}{\Atomsalt}$, is the positive possibilistic disjunctive logic program
+\[
+    \pred{\pflp}{\Atomsalt} \eqdef \set{\projrule[\prule] : \head(\proj[\prule])\cap\Atomsalt \lpif \pbody(\proj[\prule]) \guard \prule\in\pRules,\ \head(\proj[\prule])\cap\Atomsalt\neq\emptyset,\ \nbody(\proj[\prule])\cap\Atomsalt=\emptyset,\ \pbody(\proj[\prule])\subseteq\Atomsalt },
+\]
+where $\proj[\prule]$ has the form $\head(\proj[\prule])\lpif\pbody(\proj[\prule]),\nbody(\proj[\prule])$.
+
+Note that this reduction differs from the classical Gelfond-Lifschitz reduct, since it trims only the heads of "surviving" rules and considers only rules, where the positive body is "satisfied".
+\begin{example}
+    Consider the program $\pflp$
+    \begin{align*}
+        \lelem_1 & : a\flpor b,       \\
+        \lelem_2 & : c\lpif\flpnot a, \\
+        \lelem_3 & : c\lpif\flpnot b.
+    \end{align*}
+    Then $\pred{\pflp}{\set{c,b}}$ consists of $\pnec_1 : b$ and $\pnec_2 : c$, whereas the Gelfond-Lifschitz reduct $(\proj[\pflp])^{\set{c,b}}$ of the projection consists of $a\flpor b$ and $c$.
+\end{example}
+
+\begin{example}
+    Consider the program $\pflp$
+    \begin{align*}
+        \lelem_1 & : a\lpif\flpnot b, \\
+        \lelem_2 & : a\lpif b,        \\
+        \lelem_3 & : b\lpif c.
+    \end{align*}
+    Then $\pred{\pflp}{\set{a}}$ consists only of $\pnec_1 : a$, whereas the classical reduct $(\proj[\pflp])^{\set{a}}$ consists of $a$, $a\lpif b$, and $b\lpif c$.
+    Hence, $\pred{\pflp}{\Atomsalt}$ also differs from the Gelfond-Lifschitz reduction already on normal (non-disjunctive) programs.
+\end{example}
+
+The starting point for possibilistic answer sets is a possibilistic adaptation of the classical
+\define{General Principle of Partial Evaluation (GPPE)}.
+Given two possibilistic rules of the form
+$\prule_1 = \pnec : \head \lpif \pbody \cup \set{\atom}$ and %% needs to be defined differently to make sense
+$\prule_2 = \pnec_1 : \head_1$
+such that $\atom\in \head_1$, the \define{General Principle of Partial Evaluation (GPPE)} is defined as
+\[
+    \GGPPE(\prule_1,\prule_2)\eqdef \bigglb\set{\pnec,\pnec_1}:\head\cup(\head_1\setminus\set{\atom})\lpif\pbody
+\]
+\begin{example}
+    Consider the possibilistic rules
+    \[
+        \prule_1 = 0.7 : a\flpor b, \qquad \prule_2 = 0.9 : e\lpif b.
+    \]
+    Then $\GGPPE(\prule_1,\prule_2) = (0.7 : e\flpor a)$.
+\end{example}
+
+For a possibilistic positive disjunctive logic program $\pflp$ the operator $\plpop$ is defined via
+\[
+    \plpop_{\pflp}(\pflpalt)\eqdef\pflp\cup\set{\GGPPE(\prule_1,\prule_2)\guard\prule_1,\prule_2\in\pflpalt}.
+\]
+
+For $\atom\in\Atoms$, let $\pFacts{\pflp}{\atom}\eqdef\set{\prule\in\pflp \guard \prule = \pnec:\atom \in\pflp}$ be the \define{possibilistic facts} for $\atom$ in $\pflp$ and
+\[
+    \Semmin{\pflp} \eqdef \set{ (\atom,\lelem) \guard \atom\in\Atoms,\ \pFacts{\pflp}{\atom}\neq\emptyset,\ \lelem = \biglub\set{\projrule[\prule] \guard \prule\in\pFacts{\pflp}{\atom}} }.
+\]
+the set of "optimal necessity values" for the possibilistic atoms occurring in $\pflp$.
+
+Then the semantics for a possibilistic disjunctive logic program $\pflp$ is defined as follows:
+Let $\pint$ be a set of possibilistic atoms such that $\proj[\pint]$ is an answer set of $\proj[\pflp]$. Then $\pint$ is a \define{possibilistic-$\plpop$ answer set} of $\pflp$ if and only if $\pint = \Semmin{\lfp(\plpop_{\pred{\pflp}{\proj[\pint]}}})$.
+
+Let $\pflp$ be a possibilistic programs. We translate $\pflp$ into a fuzzy logic program $\PosToFuz{\pflp}$ via
+\[
+    \PosToFuz{\pflp} \eqdef \set{\atom_1\flpor\dots\flpor\atom_n\flpif{\lelem}\body\mid \lelem : \atom_1\flpor\dots\flpor\atom_n\lpif\body \in \pflp}
+\]
+%"($\body$)" in flp muss noch "diskretisiert" werden
+\begin{proposition}
+    $\lpap[\PosToFuz{\pflp}](\PintToFint(\Semmin{\pflpalt)})\leq\PintToFint(\Semmin{\plpop_{\pflp}(\pflpalt))}$, if $\pflp\subseteq\pflpalt$.
+    %    $ \PintToFint(\Semmin{\lfp(\plpop_{\pred{\pflp}{\proj[\pint]}}})) = \lpap()$
+\end{proposition}
+
+% $\fint \vDash \flp \implies \plpop(\fint)\vDash GAAP(P) \cup facts$
+
+\begin{example}
+    \label{ex:example7}
+    Consider the program $\pflp$
+    \begin{align*}
+        0.7 & : a\flpor b \lpif \flpnot c,   \\
+        0.6 & : c \lpif \flpnot a,\flpnot b, \\
+        0.8 & : a\lpif b,                    \\
+        0.9 & : e\lpif b,                    \\
+        0.6 & : b\lpif a,                    \\
+        0.5 & : b\lpif a.
+    \end{align*}
+    Then $\proj[\pflp]$ has two answer sets, $S_1=\set{a,b,e}$ and $S_2=\set{c}$; so $\pflp$ has two possibilistic answer set models, one for each. Let us continue with $S_1$.
+    The reduction $\pflp_{S_1}\eqdef\pred{\pflp}{S_1}$ is:
+    \begin{align*}
+        0.7 & : a\flpor b, \\
+        0.8 & : a\lpif b,  \\
+        0.9 & : e\lpif b,  \\
+        0.6 & : b\lpif a,  \\
+        0.5 & : b\lpif a.
+    \end{align*}
+\end{example}

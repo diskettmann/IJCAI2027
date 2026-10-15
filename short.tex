@@ -1,0 +1,54 @@
+\documentclass[letterpaper]{article}
+\pdfpagewidth=8.5in
+\pdfpageheight=11in
+
+\usepackage{ijcai25}
+
+% Use the postscript times font!
+\usepackage{times}
+\usepackage{soul}
+% url loaded in preamble.tex (with [hyphens])
+\usepackage[hidelinks]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[small]{caption}
+\usepackage{graphicx}
+%\usepackage{amsmath}
+%\usepackage{amsthm}
+\usepackage{booktabs}
+%\usepackage{algorithm}
+%\usepackage{algorithmic}
+\usepackage[switch]{lineno}
+
+
+\include{preamble}
+
+% Comment out this line in the camera-ready submission
+%\linenumbers
+
+\urlstyle{same}
+
+\input{meta}
+%\input{preamble}
+%\longfalse
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  \input{sections/abstract}
+\end{abstract}
+
+\input{main}
+
+\bibliographystyle{named}
+\bibliography{references}
+
+
+\clearpage
+\appendix
+
+\input{sections/appendix-macros}
+
+\end{document}

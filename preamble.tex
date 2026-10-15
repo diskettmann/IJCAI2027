@@ -1,0 +1,95 @@
+%\usepackage[utf8]{inputenc}
+\usepackage[british]{babel}
+\usepackage{relsize,setspace}
+%\usepackage{stmaryrd}
+\usepackage{url} % [hyphens] passed in short.tex/long.tex
+%\usepackage[font=it]{caption}
+\usepackage{tikz,pgf}\usetikzlibrary{shapes,backgrounds}
+\usepackage{amsmath,amssymb}
+\usepackage[amsmath]{ntheorem}
+%\usepackage[pdftex,colorlinks=true,linkcolor=black,citecolor=black,menucolor=black,urlcolor=black]{hyperref}
+\usepackage{cleveref}
+\usepackage{multirow}
+\usepackage{comment}
+\usepackage{xspace}
+%\usepackage{pdflscape}
+%\usepackage{yhmath}
+\usepackage{longtable}
+\usepackage{stmaryrd}
+
+% environments
+%\theoremstyle{plain}
+\theoremseparator{.}
+\theoremheaderfont{\normalfont\bfseries}
+\theorembodyfont{\slshape}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{observation}[theorem]{Observation}
+
+\theorembodyfont{\upshape}
+\theoremsymbol{\ensuremath{\Diamond}}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\normalfont\bfseries}
+\theorembodyfont{\slshape}
+\newtheorem{claim}{Claim}
+\newtheorem{nonumberlemma}{Lemma}
+\newtheorem{nonumbertheorem}{Theorem}
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\normalfont\itshape}
+\theoremsymbol{\ensuremath{\Box}}
+\newtheorem{proof}{Proof}
+\newtheorem{proofsketch}{Proof sketch} % note that this does not care \iflong
+% this is for nesting proofs, e.g. proving some distinguished sub-claim within a proof
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\normalfont\itshape}
+\theoremsymbol{\ensuremath{\Diamond}}
+\newtheorem{claimproof}{Proof of the claim}
+\newtheorem{remark}{Remark}
+
+%% for producing a long version of the paper with proofs
+\usepackage{ifthen}
+\usepackage{environ}
+%% this could in principle be used to use “long” and “short” as non-exclusive or non-exhaustive, or both
+%\newif\ifshort
+\newif\iflong
+% use shortproofs for proofs that should appear in the short paper, but not in the long paper
+\NewEnviron{shortproof}{\iflong\else\expandafter\begin{proof}\BODY\end{proof}\fi}
+% shortproofsketches are a variant (special case) of short proofs where the environment says “Proof sketch” instead of “Proof”
+\NewEnviron{shortproofsketch}{\iflong\else\expandafter\begin{proofsketch}\BODY\end{proofsketch}\fi}
+% use longproofs for proofs that should appear in the long paper only (i.e. not in the short paper)
+\NewEnviron{longproof}{\iflong\expandafter\begin{proof}\BODY\end{proof}\fi}
+
+\usepackage{todonotes}
+\usepackage{xcolor}
+\definecolor{lightblue}{HTML}{55AAFF}
+\definecolor{lightpurple}{HTML}{DD77BB}
+\definecolor{lightgray}{HTML}{DDDDDD}
+\definecolor{strongyellow}{HTML}{FFE219}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\newcommand{\hstodo}[2][]{\todo[author=HS,color=teal!50,#1]{#2}}
+\newcommand{\drtodo}[2][]{\todo[author=DR,color=strongyellow,#1]{#2}}
+\newcommand{\sgtodo}[2][]{\todo[author=SG,color=lightblue,#1]{#2}}
+\newcommand{\pktodo}[2][]{\todo[author=PK,color=lightpurple,#1]{#2}}
+\newcommand{\jhtodo}[2][]{\todo[author=PK,color=lightgray,#1]{#2}}
+
+\newcommand{\displaytodo}[1]{#1}
+\newcommand{\rem}[1]{\displaytodo{\todo[inline,color=violet!40!white]{\textbf{NOTE:} #1}}}
+\newcommand{\tod}[1]{\displaytodo{\todo[inline,color=red!40]{\textbf{TODO:} #1}}}
+
+\input{macros/general.tex}
+\input{macros/flp.tex}
+\input{macros/logic-programs.tex}
+\input{macros/lattice.tex}
+\input{macros/aft.tex}
+\input{macros/logic.tex}
+\input{macros/lnn.tex}
+\input{macros/reconstructions.tex}

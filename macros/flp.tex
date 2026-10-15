@@ -1,0 +1,148 @@
+%% Formal Language
+\newcommand{\propL}{\mathfrak{L}}
+%% Fuzzy Universe 
+%\newcommand{\fuzzyUniverse}[1]{#1}
+%% Fuzzy Connectives 
+\newcommand{\flpcon}{f}
+%% Family of Fuzzy Connectives
+\newcommand{\Flpcon}{\mathcal{F}}
+%% atoms in general (propositional vocabulary)
+\newcommand{\Atoms}{\Pi}
+\newcommand{\Atomsalt}{\Pi'}
+\newcommand{\atom}{p}
+\newcommand{\litset}{\alpha}
+\newcommand{\litsetsup}[2][i]{\litset^{(#1,#2)}}
+\newcommand{\litsetalt}{\beta}
+\newcommand{\litsetaltsup}[2][i]{\litsetalt^{(#1,#2)}}
+%% Atoms occurring in program
+%\newcommand{\flpatom}[1][\flp]{\Pi_{#1}}%
+\newcommand{\flpatom}{\Atoms}%
+%% Fuzzy Interpretations 
+\newcommand{\fint}{I}
+\newcommand{\fintsup}[2][i]{\fint^{(#1,#2)}}
+\newcommand{\fintalt}{J}
+\newcommand{\fintaltsup}[2][i]{\fintalt^{(#1,#2)}}
+\newcommand{\fintset}{\mathcal{J}}
+\newcommand{\lint}{L}
+\newcommand{\lintsup}[1][i]{\lint^{(#1)}}
+\newcommand{\uint}{U}
+\newcommand{\uintsup}[1][i]{\uint^{(#1)}}
+\newcommand{\lintalt}{M}
+\newcommand{\uintalt}{T}
+\newcommand{\fintpair}{\mathbf{i}}
+\newcommand{\fintpairsup}[1][k]{\fintpair^{(#1)}}
+\newcommand{\fintpairalt}{\mathbf{j}}
+\newcommand{\fintpairaltsup}[1][k]{\fintpairalt^{(#1)}}
+%% set of all non-paraconsistent (standard) fuzzy interpretations
+\newcommand{\nint}{K}
+\newcommand{\nintalt}{L}
+\newcommand{\Nint}{\mathcal{\nint}}
+%% set of all non-paraconsistent (extended) fuzzy Interpretations
+\newcommand{\eint}{G}
+\newcommand{\eintalt}{H}
+\newcommand{\Eint}{\mathcal{\eint}}
+% \newcommand{\Eint}{\mathcal{\eint}^{\flpneg}}
+\newcommand{\dom}[1][\eint]{\mathrm{dom}(#1)}
+%% Set of all paraconsistent fuzzy Interpretations
+\newcommand{\Fint}{\mathcal{\fint}}
+%% Corresponding truth value function
+\newcommand{\fformeval}[2]{\widehat{#1}\!\left(#2\right)}
+\newcommand{\fformnoteval}[2]{#2^{#1}}
+\newcommand{\fnnformeval}[2]{\widehat{\widehat{#1}}\!\left(#2\right)}
+\newcommand{\fnformeval}[3]{\fnnformeval{(#1,#2)}{#3}}
+\newcommand{\flpcontf}[1]{#1^{\text{\raisebox{0.3ex}{\large$\mkern-1mu\mathord{\cdot}$}}}}
+\newcommand{\flpcontff}[1]{#1^{\text{\raisebox{0.3ex}{\large$\mkern-1mu\mathord{\cdot\mkern-2mu\cdot}$}}}}
+% evaluation for non-paraconsistent interpretations
+\newcommand{\nfformeval}[2]{\left[#1\right]\!\left(#2\right)}
+\newcommand{\nfnnformeval}[2]{\left[\!\left[#1\right]\!\right]\!\left(#2\right)}
+\newcommand{\nfnformeval}[3]{\nfnnformeval{(#1,#2)}{#3}}
+% some shorthands
+\newcommand{\flpnotf}{\mathord{\flpcontf{\flpnot}\mkern-2mu}}
+\newcommand{\flpnotff}{\mathord{\flpcontff{\flpnot}\mkern-2mu}}
+\newcommand{\flpnegf}{\mathord{\flpcontf{\flpneg}\mkern-2mu}}
+\newcommand{\flpnegff}{\mathord{\flpcontff{\flpneg}\mkern-2mu}}
+%% LaTeX macros for fuzzy logic programming
+\newcommand{\flpif}[1]{\overset{#1}{\gets}}
+\newcommand{\flpnot}{\mathord{\sim}}
+\newcommand{\flpneg}{\neg}
+\newcommand{\flpand}{\land}
+\newcommand{\flpor}{\lor}
+\newcommand{\flpagg}{\mathbin{@}}
+\newcommand{\flpweight}{\vartheta}
+% flp operators 
+\newcommand{\flp}{P}
+% \newcommand{\flp}{\lp}
+\newcommand{\flpoperator}[2]{#1_{#2}}
+\newcommand{\flpop}[1][\flp]{\flpoperator{T}{#1}}
+\newcommand{\flpap}[1]{\flpoperator{\mathcal{A}}{#1}}
+\newcommand{\flpapp}{\flpap{\flp}}
+\newcommand{\flpappa}{\fst{\flpapp}}
+\newcommand{\flpappb}{\snd{\flpapp}}
+%% flp general
+\newcommand{\flpr}{\atom \flpif{\flpweight}_i \body}
+\newcommand{\flprUW}{\atom \flpif{}_i \body}
+\newcommand{\nflpr}{\flpneg \atom \flpif{\flpweight}_i \body}
+\newcommand{\nflprUW}{\flpneg \atom \flpif{}_i \body}
+\newcommand{\lflpr}{\literal \flpif{}_i \body}
+\newcommand{\flprRed}[1][\fint]{\atom \flpif{\flpweight}_i \body_{#1}}
+\newcommand{\eflpr}{\literal\lpif{}\body}
+\newcommand{\eflprp}{\atom\lpif{}\body}
+\newcommand{\eflprn}{\flpneg\atom\lpif{}\body}
+\newcommand{\body}{\mathcal{B}}
+\newcommand{\pbody}{\body^{\not\flpnot}}
+\newcommand{\nbody}{\body^{\flpnot}}
+\newcommand{\head}{\mathcal{H}}
+\newcommand{\bodies}[1][\literal]{\mathbf{B}_{#1}}
+
+
+\newcommand{\flpcontfStraccia}[1]{#1^{\text{\raisebox{0.3ex}{\large$\mathord{\cdot}\mathord{\cdot}$}}}}
+\newcommand{\TpStraccia}[1][\flp]{\mathcal{S}_{#1}} % S for Straccia
+\newcommand{\FpStraccia}[2][\flp]{F_{#1,#2}}
+\newcommand{\SpStraccia}{s}
+\newcommand{\WFStraccia}{\mathcal{AW}}
+
+% Closed World Assumption
+\newcommand{\cwa}{CWA}
+
+%Abbreviation for various "fuzzy logic program(s)" when needed
+\newcommand{\flptext}{FLP\xspace}
+\newcommand{\flpstext}{FLPs\xspace}
+\newcommand{\pflptext}{p\flptext}
+\newcommand{\pflpstext}{p\flpstext}
+\newcommand{\nflptext}{n\flptext}
+\newcommand{\nflpstext}{n\flpstext}
+\newcommand{\eflptext}{e\flptext}
+\newcommand{\eflpstext}{e\flpstext}
+
+% normal non-paraconsistent logic program
+\newcommand{\nflp}{Q}
+
+% modus ponens inference candidate
+\newcommand{\mopo}{\mathit{mp}}
+
+% example program atoms
+\newcommand{\epred}[1]{\mathtt{#1}}
+\newcommand{\drive}{\epred{drive}}
+\newcommand{\obstacle}{\epred{obstacle}}
+\newcommand{\camera}{\epred{camera}}
+\newcommand{\proximity}{\epred{proximity}}
+
+% Saad syntax
+\newcommand{\ann}[2]{#1\mathord{:}#2}
+\newcommand{\gecon}[1]{\mathord{\trianglerighteq_{#1}}}
+\newcommand{\gtcon}[1][0]{\mathord{\triangleright_{#1}}}
+
+% Saad fixpoint operator
+\newcommand{\Saadop}{O}
+\newcommand{\SaadP}{Q}
+
+% Reduct of Saad rule
+\newcommand{\Saadredr}[1][\eint]{r_{#1}}
+% Reduct of Saad program
+\newcommand{\Saadredp}[1][\eint]{\SaadP_{#1}}
+
+% Map from literal interpretations to pairs
+\newcommand{\litTolit}[1][\eint]{\fint_{#1}}
+
+% remainder of the head after removing p
+\newcommand{\headminus}[1][\atom]{\head_{#1}}

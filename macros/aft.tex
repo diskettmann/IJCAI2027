@@ -1,0 +1,68 @@
+%% LaTeX macros for approximation fixpoint theory
+% components of pairs: prefix command
+\newcommand{\fst}[1]{#1_1}
+\newcommand{\snd}[1]{#1_2}
+% postfix command
+\newcommand{\first}{'}
+\newcommand{\second}{''}
+% operators
+\newcommand{\op}{O}
+\newcommand{\ap}{\mathcal{A}}
+\newcommand{\opap}{\mathcal{O}}
+\newcommand{\apa}{\fst{\ap}}
+\newcommand{\apb}{\snd{\ap}}
+\newcommand{\stable}[1]{#1^{\mathit{st}}}
+\newcommand{\stap}{\stable{\ap}}
+\newcommand{\opst}{\stable{\opap}}
+\newcommand{\complete}[1]{\mathord{c\stable{#1}}}
+% lp operators
+\newcommand{\lpoperator}[2]{#1_{#2}}
+\newcommand{\lp}{P}
+\newcommand{\lpop}[1][\lp]{\lpoperator{T}{#1}}
+\newcommand{\lpopp}{\lpop{\lp}}
+\newcommand{\lpap}[1][\lp]{\lpoperator{\mathcal{T}}{#1}}
+\newcommand{\lpapp}{\lpap{\lp}}
+\newcommand{\lpappa}{\fst{\lpapp}}
+\newcommand{\lpappb}{\snd{\lpapp}}
+% af operators
+\newcommand{\afop}[1]{\lpoperator{U}{#1}}
+\newcommand{\af}{F}
+\newcommand{\afopp}{\afop{\af}}
+\newcommand{\afap}[1]{\lpoperator{\mathcal{U}}{#1}}
+\newcommand{\afapp}{\afap{\af}}
+% bilattice for a lattice carrier set
+\newcommand{\bil}[1][\lset]{#1^2}
+% consistent bilattice
+\newcommand{\bic}[1][\lset]{#1^c}
+% orderings
+\newcommand{\ileq}{\leq_i}
+\newcommand{\ilt}{<_i}
+\newcommand{\pleq}{\leq_p}
+\newcommand{\plt}{<_p}
+\newcommand{\plub}{\oplus}
+\newcommand{\pglb}{\otimes}
+\newcommand{\bigplub}{\bigoplus}
+\newcommand{\tleq}{\leq_t}
+\newcommand{\tlt}{<_t}
+\newcommand{\tlub}{\lor_t}
+\newcommand{\tglb}{\land_t}
+\newcommand{\bigtlub}{\bigvee_t}
+\newcommand{\bigtglb}{\bigwedge_t}
+% fixpoints
+\newcommand{\lfp}{\mathit{lfp}}
+\newcommand{\gfp}{\mathit{gfp}}
+% another operator for comparison
+\newcommand{\bp}{B}
+\newcommand{\ult}[1]{\mathcal{U}_#1}
+\newcommand{\ultap}{\mathcal{U}}
+\newcommand{\ultimate}[1]{\mathord{\ultap_#1}}
+\newcommand{\ultop}{\ult{\op}}
+\newcommand{\ultlpop}{\ult{\flp}}
+% operator precision ordering
+\newcommand{\opleq}{\leq_{\mathit{oi}}}
+
+% specific operator for logic programs (supported models)
+\newcommand{\lpsu}[1]{\lpop{#1}}
+\newcommand{\lpst}[1]{\stable{\lpap{#1}}}
+
+

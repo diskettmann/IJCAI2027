@@ -1,0 +1,84 @@
+% LaTeX macros
+\newcommand{\ghost}[1]{\raisebox{0pt}[0pt][0pt]{\makebox[0pt][l]{#1}}}
+% math & logic
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+% number theory
+%\newcommand{\divides}{\mid}
+% why is this not a standard command but \gcd is?
+%\newcommand{\lcm}{\mathbin{\mathrm{lcm}}}
+% renew gcd to make it look like lcm
+%\renewcommand{\gcd}{\mathbin{\mathrm{gcd}}}
+% set theory
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\pset}[1]{2^{#1}}%
+\newcommand{\sset}[1]{\left\{\,#1\,\right\}}
+\newcommand{\guard}{\ \middle\vert\ }
+\newcommand{\card}[1]{\left\vert#1\right\vert}
+%\newcommand{\size}[1]{\left\Vert#1\right\Vert}
+\newcommand{\tuple}[1]{\left(#1\right)}
+%\newcommand{\tand}{\mathrel{\:\:\&\:\:}}
+\newcommand{\tand}{\;\text{and}\;}
+%\newcommand{\timplies}{\implies}
+\newcommand{\timplies}{\quad\text{implies}\quad}
+\newcommand{\define}[1]{\emph{#1}}
+% use next command as define, but if you want something else (#2) to occur in the index/glossary
+\newcommand{\defineas}[2]{\emph{#1}}
+% thin spaces
+\newcommand{\ts}{\mkern1mu}
+\newcommand{\nts}{\mkern-1mu}
+% ordinal numbers
+\newcommand{\ordn}{\alpha}
+\newcommand{\ordnalt}{\alpha'}
+\newcommand{\ordsucc}{\mathord{\ordn+1}}
+\newcommand{\ordlim}{\beta}
+%% meta-level logic
+% notation for meta-level quantification
+%\newcommand{\qexists}[2]{(\exists#1)#2}
+%\newcommand{\qforall}[2]{(\forall#1)#2}
+%\newcommand{\onlyif}{\Longleftarrow}
+% object-level macros
+\newcommand{\eqdef}{\mathrel{:=}}
+\newcommand{\iffdef}{\mathrel{\;:\!\!\iff\,}}
+%% ebnf
+% production rule/definition
+\newcommand{\ebnfeq}{\mathrel{::=}}
+% alternative
+\newcommand{\ebnfalt}{\mathbin{\mid}}
+
+
+
+% Define typographic struts, as suggested by Claudio Beccari
+%   in an article in TeX and TUG News, Vol. 2, 1993.
+\newcommand\Tstrut{\rule{0pt}{2.6ex}}       % = `top' strut
+\newcommand\Bstrut{\rule[-1ex]{0pt}{0pt}}   % = `bottom' strut
+\newcommand\Strut{\rule[-1ex]{0pt}{2.6ex}}  % = `both' strut
+
+% Down right arrow
+%\newcommand{\drarrow}{\rotatebox[origin=c]{180}{$\Lsh$}}
+
+
+
+
+
+
+
+%%%%%%
+
+
+%\newcommand{\citet}[1]{\citeauthor{#1}~[\citeyear{#1}]}
+
+\newcommand{\explain}[1]{\ensuremath{#1}\dotfill\texttt{\detokenize{#1}}}
+
+% explain macro and usage as table line
+\newcommand{\taex}[2]{\ensuremath{#1}&\texttt{\detokenize{#1}}&#2\\}
+\newcommand{\taexn}[2]{\textcolor{blue}{\ensuremath{#1}}&\textcolor{blue}{\texttt{\detokenize{#1}}}&\textcolor{blue}{#2}\\}
+\newcommand{\taexp}[2]{\textcolor{purple}{\ensuremath{#1}}&\textcolor{purple}{\texttt{\detokenize{#1}}}&\textcolor{purple}{#2}\\}
+\newcommand{\taexheading}[1]{\hline\multicolumn{3}{c}{\textbf{#1}}\\\hline}
+
+\newlength{\narrowgatherskip}
+\newenvironment{narrowgather}[1][2pt]{%
+    \setlength{\narrowgatherskip}{#1}%
+    \vskip\narrowgatherskip\mbox{}\hfill\(}{\)\hfill\mbox{}\vskip\narrowgatherskip\noindent}
+
