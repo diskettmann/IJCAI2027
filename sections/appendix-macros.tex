@@ -1,6 +1,13 @@
 \onecolumn
 \section*{Overview of \LaTeX~Macros for Authors}
 
+\noindent
+black: listed before\\*
+\textcolor{blue}{blue}: previously unlisted\\*
+\textcolor{purple}{purple}: used in IJCAI'25 / RuleML'26\\*
+\textcolor{darkorange}{dark orange}: new in this paper
+\par\medskip
+
 \bgroup
 \renewcommand{\arraystretch}{1.4}
 \begin{longtable}{lp{0.38\textwidth}p{0.3\textwidth}}
@@ -163,8 +170,15 @@
     \taexn{\ultimate{\op}}{ultimate approximating operator of $\op$}
     \taexp{\ultop}{ultimate operator of $\op$}
     \taexp{\ultlpop}{ultimate operator of $\flp$}
-
-
+    \taexo{X \sleq Y}{Smyth order on sets of lattice elements}
+    \taexo{X \hleq Y}{Hoare order on sets of lattice elements}
+    \taexo{\ndileq}{precision order on pairs of sets (Smyth on the lower, Hoare on the upper component)}
+    \taexo{\ndl}{lower component of a non-deterministic approximator}
+    \taexo{\ndu}{upper component of a non-deterministic approximator}
+    \taexo{\ndcomp{\ndl}}{minimal fixpoints of the lower component (complete stable operator)}
+    \taexo{\ndst{\opap}}{stable operator of a non-deterministic approximator}
+    \taexo{\upsets}{up-closed subsets of a lattice}
+    \taexo{\downsets}{down-closed subsets of a lattice}
 
     \taexheading{logic}
     \taexp{\atom}{atom}
@@ -366,5 +380,41 @@
     \taexn{\Semmin{\pflp}}{minimal semantics of $\pflp$}
     \taexn{\pFacts{x}{y}}{facts of $x$ with respect to $y$}
     \taexn{\PosToFuz{x}}{translation of $x$ to fuzzy programs}
+    \taexheading{guller}
+    \taexo{\dflptext}{abbreviation dFLP}
+    \taexo{\dflpstext}{abbreviation dFLPs}
+    \taexo{\gdis}{disjunction of atoms (finite set of atoms)}
+    \taexo{\gdisalt}{second disjunction of atoms}
+    \taexo{\gsub}{subsumption of disjunctions}
+    \taexo{\gpair{\gdis}{c}}{graded disjunction}
+    \taexo{\Gdis}{set of graded disjunctions}
+    \taexo{\dflpr}{disjunctive rule with weight}
+    \taexo{\gop}{hyperresolution operator of $\flp$}
+    \taexo{\gdsem}{declarative semantics of $\flp$}
+    \taexo{\gfsem}{fixpoint semantics of $\flp$}
+    \taexheading{saad}
+    \taexo{\edptext}{abbreviation ed-program}
+    \taexo{\edpstext}{abbreviation ed-programs}
+    \taexos{\Saadhead}{head of an ed-rule: annotated literals joined by disjunction}
+    \taexos{\Saadbody}{body of an ed-rule: annotated literals and default negated annotated literals}
+    \taexos{\Saaddr}{extended disjunctive fuzzy rule}
+    \taexo{\Saadleq}{order on extended interpretations (domain inclusion and pointwise)}
+    \taexheading{mushthofa}
+    \taexo{\flpand_t}{generic t-norm}
+    \taexo{\flpor_t}{generic t-conorm}
+    \taexo{\flpand_l}{Łukasiewicz conjunction}
+    \taexo{\flpor_l}{Łukasiewicz disjunction}
+    \taexo{\flpand_g}{Gödel conjunction}
+    \taexo{\flpor_g}{Gödel disjunction}
+    \taexo{\fasptext}{abbreviation FASP}
+    \taexo{\faspstext}{abbreviation FASPs}
+    \taexo{\lkand}{Łukasiewicz t-norm}
+    \taexo{\lkor}{Łukasiewicz t-conorm}
+    \taexo{\lkmax}{maximum}
+    \taexo{\lkmin}{minimum}
+    \taexo{\lkc{c}}{constant $c$ in a program}
+    \taexo{\lkset}{finite-valued lattice $\{\frac{i}{k}\mid 0\leq i\leq k\}$}
+    \taexo{\lkred}{reduct of $\flp$ w.r.t.\ $\fint$}
+    \taexo{\lkshift}{shifted program}
 \end{longtable}
 \egroup
