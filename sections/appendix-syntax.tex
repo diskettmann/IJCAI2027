@@ -1,0 +1,260 @@
+\begingroup\color{darkorange}
+\onecolumn
+\section*{Syntax of Related Approaches}
+\label{app:syntax}
+
+{\scriptsize
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{@{}p{0.15\textwidth}p{0.40\textwidth}p{0.42\textwidth}@{}}
+\caption{Rule form and head of the rules.}\label{tab:syntax-heads}\\
+\toprule
+\textbf{Approach} & \textbf{Rule form} & \textbf{Head and head disjunction}\\
+\midrule\endfirsthead
+\toprule
+\textbf{Approach} & \textbf{Rule form} & \textbf{Head and head disjunction}\\
+\midrule\endhead
+\bottomrule\endfoot
+\cite{VanNieuwenborghDV06} & $\alpha\leftarrow\beta$ with $|\alpha|\leq1$, $\beta$ a set of extended literals & One extended literal, even a default-negated one; empty head is a constraint. No disjunction (future work).\\
+\cite{VanNieuwenborghDV07} & $a\leftarrow\beta$, $a$ a literal or $\bot$ & One literal ($a$ or $\neg a$) or $\bot$ (constraint); no default negation in heads.\\
+\cite{JanssenSVD09} & $a\leftarrow\alpha$, residual implicator per rule, $\alpha$ any expression over acceptable functions & One proposition or a constant (constraint). No disjunction.\\
+\cite{JanssenVSD12} & $a\leftarrow T(b_1,\dots,b_n)$, $T$ an arbitrary t-norm chosen per rule & One atom or a constant in $[0,1]$ (constraint). No disjunction.\\
+\cite{JanssenSVD12core} & $a\leftarrow f(b_1,\dots,b_n)$, $f$ increasing, residual implicator of a t-norm & One atom; a constant head is allowed in the extension for constraints. No disjunction.\\
+\cite{SchockaertJVD09,SchockaertJV12} & FASP: $a\leftarrow\alpha$; fuzzy equilibrium logic: arbitrary formulas, rules $\alpha\to\beta$ & FASP: one atom or constant. Equilibrium logic: arbitrary formulas, so disjunction (t-conorm $\flpor_t$ or max chosen for the theory), conjunctions and nested rules; $a\leftarrow b\lor c$ is equivalent to two rules only for max.\\
+\cite{BlondeelSVD14} & $g(a_1,\dots,a_n)\leftarrow f(b_1,\dots,b_m,\mathbf{not}\,c_1,\dots,\mathbf{not}\,c_k)$ & Regular FASP: any composition $g$ of $\flpand_l,\flpor_l,\flpor_g,\flpand_g$ over literals and constants. Strict disjunctive FASP: only $a_1\flpor_l\dots\flpor_l a_n$.\\
+\cite{MushthofaSD14} & $\alpha\leftarrow\beta$, head and body expressions & Any nesting of $\flpand_l,\flpor_l,\flpor_g,\flpand_g$ over literals and constants; typical heads $a\flpor_l b$ and $a\,\max\,b$; constant head is a constraint.\\
+\cite{MushthofaSD15} & as above & Same grammar, but the paper restricts the head to $\flpor_l$-disjunctions of literals; $\flpor_l$ is allowed in bodies and heads.\\
+\cite{MushthofaSD20} & as above & As above; one literal in the head is a normal rule, otherwise disjunctive ($\flpor_l$ or max).\\
+\cite{AlvianoP13} & $a\leftarrow b_1\flpand_l\dots\flpand_l b_m\flpand_l\mathbf{not}\,b_{m+1}\flpand_l\dots\flpand_l\mathbf{not}\,b_n$ & One fuzzy atom (an atom or a numeric constant). No disjunction.\\
+\cite{AlvianoP15} & $\alpha\leftarrow\beta$, $\alpha$ a head expression & A chain of atoms with one connective from $\flpand_l$, $\flpor_l$, $\flpor_g$, $\flpand_g$; $n=1$ is atomic. Heads with $\flpor_l$ or max are disjunctive.\\
+\cite{AlvianoAP17} & $\alpha\leftarrow\beta$ & One atom (a variable or a constant). No disjunction.\\
+\cite{Lukasiewicz01} & $(A_1\lor\dots\lor A_l\leftarrow B_1,\dots,B_m,\mathbf{not}\,C_1,\dots,\mathbf{not}\,C_n)[c,1]$ & Disjunction of atoms ($l\geq0$, empty head is an integrity clause), evaluated as max under positively correlated interpretations.\\
+\cite{LukasiewiczS07} & $a_1\lor_{\flpor_{t_{1}}}\dots\lor_{\flpor_{t_{l-1}}}a_l\leftarrow_{\flpand_{t_{0}}}b_1\land_{\flpand_{t_{1}}}\dots\;\mathbf{not}_{\ominus}\,b_m\geq v$ & Non-empty disjunction of atoms, each disjunction symbol with its own t-conorm $\flpor_{t_{i}}$, so the connective may differ per rule and per position.\\
+\cite{LukasiewiczS09} & $a\leftarrow_{\flpand_{t_{0}}}b_1\land_{\flpand_{t_{1}}}\dots\mathbf{not}_\ominus b_m$ with threshold $v$ & One atom. Disjunction strategies only occur in the formulas of the probabilistic part, not in rules.\\
+\cite{Mateis00} & $h_1\lor\dots\lor h_n\leftarrow^{[x,y]}b_1,\dots,b_k$, $0<x\leq y\leq1$ & Non-empty disjunction of atoms evaluated by the t-conorm $S^{(p)}$ dual to a Schweizer--Sklar t-norm; the parameter $p$ is chosen once for the whole program.\\
+\cite{Guller02} & $(l_1\mathbin{\dot\lor}\dots\mathbin{\dot\lor}l_n\leftarrow k_1\land\dots\land k_m,\;c)$ & Strong disjunction of literals ($n\geq0$) interpreted as the join of a complete Boolean lattice; classical negation allowed in head literals.\\
+\cite{Guller2004procedural} & $(h_1\lor\dots\lor h_n\leftarrow b_1\,\&\dots\&\,b_m,\;c)$ & Non-empty disjunction of atoms ($n>0$) interpreted as the supremum of the residuated lattice, one connective for the whole program.\\
+\cite{Saad2009extended} & $l:\mu\leftarrow l_1:\mu_1,\dots,\mathbf{not}\,l_m:\mu_m$ & One annotated literal. No disjunction.\\
+\cite{Saad2010disjunctive} & $l_1:\mu_1\;\mathbf{or}\dots\mathbf{or}\;l_k:\mu_k\leftarrow l_{k+1}:\mu_{k+1},\dots,\mathbf{not}\,l_n:\mu_n$ & Disjunction of annotated literals, read existentially: at least one disjunct reaches its own annotation; every disjunct has its own annotation.\\
+\cite{NievesOC07,NievesOC13} & $\alpha:a_1\lor\dots\lor a_m\leftarrow a_{m+1},\dots,\mathbf{not}\,a_n$, $\alpha$ in a finite lattice & Classical disjunction ($m\geq0$, $m=0$ is a constraint), the weight applies to the clause as a whole; no t-conorm, no weights per disjunct.\\
+\cite{NicolasGSL06} & $(c\leftarrow a_1,\dots,a_n,\mathbf{not}\,b_1,\dots,\mathbf{not}\,b_m,\alpha)$ & One atom. No disjunction (future work).\\
+\cite{BautersSDV14tplp} & $\lambda:l_0;\dots;l_k\leftarrow l_{k+1},\dots,\mathbf{not}\,l_n$ & Strong disjunction ``;'' is the maximum of the necessities of the disjuncts; weak disjunction is the necessity of the clause $l_0\lor\dots\lor l_k$.\\
+\cite{BautersSDV14ijar} & as above & Strong reading (maximum of necessities) and, in the second reading, classical disjunction inside each subprogram.\\
+\cite{StracciaOD09} & $g(B_1,\dots,B_k)\leftarrow f(A_1,\dots,A_n)$ with computable connectors & Arbitrary connector $g$; main example is the disjunction $\max(A,B)$ (lattice join); $\bot$ is the empty head.\\
+\cite{LoyerS09} & $A\leftarrow\varphi$ & One atom; several rules with the same head are combined by the join in the completion.\\
+\cite{MadridO12} & $p\leftarrow p_1\ast\dots\ast p_m\ast\neg p_{m+1}\ast\dots\ast\neg p_n\;;\vartheta$ & One atom. No disjunction.\\
+\cite{MedinaOV01} & $(A\leftarrow_iB),\vartheta$ & One atom. No disjunction in heads (disjunctors only in bodies).\\
+\cite{CornejoLM18} & $\langle p\leftarrow_i@[p_1,\dots,p_m,\neg p_{m+1},\dots,\neg p_n];\vartheta\rangle$ & One atom. No disjunction.\\
+\cite{CornejoLM20} & $\langle p\leftarrow_i@^e[p_1,\dots,p_m;p_{m+1},\dots,p_n];\vartheta\rangle$ and constraints with weight $\top$ & One atom, or a constant $c$ (constraint). No disjunction.\\
+\cite{CornejoLM20math} & Multi-adjoint normal programs and core FASP $a\leftarrow f(l_1,\dots,l_n)$ & One atom. No disjunction (future work).\\
+\cite{HeyninckAB22arxiv} & $\bigvee_{i=1}^np_i\leftarrow\psi$ & Non-empty classical disjunction of atoms, read inclusively (a model needs at least one true head atom); four-valued semantics.\\
+\cite{PelovT04} & $A_1\lor\dots\lor A_k\leftarrow L_1\land\dots\land L_m$, with monotone aggregate atoms & Classical disjunction of atoms ($k\geq1$), handled by non-deterministic operators.\\
+\cite{RiegelEtAl20} & no rules: a graph of weighted formulas & Not applicable; $\flpor_t$ is an ordinary connective of weighted formulas.\\
+\cite{SenCRG22} & first-order $h\leftarrow b_1\land\dots\land b_m$ learned from templates & One predicate; disjunction only inside templates (LNN-$\lor$ nodes).\\
+\cite{Antic24} & $a_0\leftarrow^{w}a_1,\dots,a_k$ with weights $w$ & One neuron. No disjunction.\\
+\cite{KettmannHS25} & $p\leftarrow^{\vartheta}_iB$ & One atom (disjunctive heads are not covered).\\
+\cite{KettmannSHS26arxiv} & $\ell\leftarrow B$ (weight-free) & One literal (atom or strongly negated atom); the disjunctive case is future work.\\
+\end{longtable}
+
+\begin{longtable}{@{}p{0.15\textwidth}p{0.31\textwidth}p{0.18\textwidth}p{0.17\textwidth}p{0.14\textwidth}@{}}
+\caption{Bodies, negation, weights and truth values.}\label{tab:syntax-bodies}\\
+\toprule
+\textbf{Approach} & \textbf{Body connectives} & \textbf{Negation} & \textbf{Weights} & \textbf{Truth values}\\
+\midrule\endfirsthead
+\toprule
+\textbf{Approach} & \textbf{Body connectives} & \textbf{Negation} & \textbf{Weights} & \textbf{Truth values}\\
+\midrule\endhead
+\bottomrule\endfoot
+\cite{VanNieuwenborghDV06,VanNieuwenborghDV07} & Extended literals combined by one user-chosen t-norm, fixed for the whole framework; no t-conorms, max, aggregators or constants. & Default negation with any negator; classical $\neg$ as a literal with a consistency condition. & None; rule degrees from an implicator, combined by an aggregator ($y$-models). & Complete lattice, propositional.\\
+\cite{JanssenSVD09} & Any expression over ``acceptable'' functions (monotone or antitone in each argument), e.g.\ t-norms, t-conorms, max, averages. & Any decreasing function; negative occurrences are replaced in the reduct. & Aggregator over rule satisfaction ($k$-answer sets). & Bounded complete lattice.\\
+\cite{JanssenVSD12} & One arbitrary t-norm per rule over atoms, constants and $N(a)$; no t-conorms (explained in Sect.~7). & Arbitrary negator $N$ on atoms. & None; model needs rule degree $1$; weights as $a\leftarrow T(b,\alpha)$. & $[0,1]$.\\
+\cite{JanssenSVD12core} & Any increasing function $f$ per rule, so t-norms, t-conorms, max, min; decreasing functions are simulated. & $\flpnot  a$ with any negator; involutive one for the simulations. & Aggregator over rule degrees in the extension. & Complete lattice.\\
+\cite{SchockaertJVD09,SchockaertJV12} & FASP: any function monotone or antitone in each argument; equilibrium logic: any combination of $\flpand_t,\flpor_t,\to$, strong negation and not. & Strong negation and default negation on arbitrary formulas, evaluated in two worlds. & $\rho$-models for partial rule satisfaction. & Intervals in $[0,1]$, rational constants.\\
+\cite{BlondeelSVD14} & Any composition of $\flpand_l,\flpor_l,\flpor_g,\flpand_g$; strict programs: $\flpand_l$-conjunctions of literals, naf-literals and constants. & $\mathbf{not}\,l=1-l$ on literals; classical $\neg a$ as fresh literal with $I(l)+I(\neg l)\leq1$. & None; rule value $\min(1-\beta+\alpha,1)$. & $[0,1]\cap\mathbb{Q}$.\\
+\cite{MushthofaSD14,MushthofaSD15,MushthofaSD20} & Any nesting of $\flpand_l,\flpor_l,\flpor_g,\flpand_g$ over literals and constants, so $\flpor_l$ in bodies; fixed Łukasiewicz connectives. & $\mathbf{not}$ on literals only, $1-x$; classical negation as separate literal. & None. & $[0,1]$ or $\{\frac{i}{k}\}$.\\
+\cite{AlvianoP13} & Conjunction $\flpand_l$ of atoms and naf-atoms; one fixed t-norm (Gödel, Łukasiewicz or product). & $\mathbf{not}\,b=1-b$ on atoms. & None. & $[0,1]$.\\
+\cite{AlvianoP15,AlvianoAP17} & Arbitrary nesting of $\flpand_l,\flpor_l,\flpor_g,\flpand_g$ and $\flpnot $, fixed connectives. & $\flpnot \alpha=1-\alpha$ on arbitrary expressions. & None. & $[0,1]$ (AP17: also $L_n$).\\
+\cite{Lukasiewicz01} & Conjunction of atoms and naf-atoms, evaluated as min; no choice of t-norm. & Default negation $\mathbf{not}\,C$, read classically in the clause. & Lower probability bound $c$ per rule; model iff $\max(\text{head},C\text{'s})\geq c-1+\min(B)$. & Finite chain $\{0,\frac1{n-1},\dots,1\}$.\\
+\cite{LukasiewiczS07,LukasiewiczS09} & Conjunction of atoms, constants and naf-atoms; each $\land$ with its own t-norm, per rule and position; no disjunction in bodies. & $\mathbf{not}_\ominus$ with its own negation strategy on atoms. & Threshold $v$, conjoined to the body with $\flpand_{t_{0}}$. & $[0,1]$, function-free first order.\\
+\cite{Mateis00} & Conjunction of atoms by the t-norm $T^{(p)}$ (global); no negation. & None. & Interval $[x,y]$ combined by the product t-norm. & Intervals in $[0,1]$.\\
+\cite{Guller02,Guller2004procedural} & Conjunction (meet in 2002, t-norm $\ast$ in 2004); no disjunction. & 2002: classical negation only; 2004: none. & Degree $c$ per implication; $(\varphi,c)$ true iff $\|\varphi\|\geq c$. & Complete Boolean (2002) or residuated (2004) lattice.\\
+\cite{Saad2009extended,Saad2010disjunctive} & Conjunction of annotated literals, satisfied iff every item reaches its annotation; fixed max/min. & Classical $\neg$ ($1-x$) and default $\mathbf{not}$, with partial interpretations. & Annotations on every literal; no rule weight. & $[0,1]$.\\
+\cite{NievesOC07,NievesOC13} & Conjunction of atoms and naf-literals, classical two-valued; weights combine by glb in the proof system. & Boolean naf via reduct; strong negation by fresh atoms. & Necessity degree per clause in a finite (possibly partial) lattice. & Two-valued atoms.\\
+\cite{NicolasGSL06} & Conjunction by min of necessity degrees. & Boolean naf via a Gödel-style reduct. & Necessity $\alpha$ per rule. & Finite chain $N\subseteq\,]0,1]$.\\
+\cite{BautersSDV14tplp,BautersSDV14ijar} & Conjunction by min of necessities; weak case: clauses allowed in bodies. & Classical $\neg$ and naf, with Gödel ($\mathrm{PASP}_G$) or Łukasiewicz ($1-V$) negator. & Certainty $\lambda$ per rule as a constraint on possibility distributions. & Valuations in $[0,1]$ over literals.\\
+\cite{StracciaOD09} & Any computable connector, also non-monotone (e.g.\ $1-x$, $\max(0,x+y-1)$, weighted sums). & No default negation, no stable semantics. & None. & Arbitrary complete lattice.\\
+\cite{LoyerS09} & Any continuous function in a family containing meet and join. & Involutive order-reversing $\neg$. & None. & Complete lattice; intervals $L\times L$.\\
+\cite{MadridO12} & $\ast$-conjunction of atoms and naf-atoms, one fixed $\ast$; no disjunction. & Any decreasing $\neg$ with $\neg0=1$, $\neg1=0$. & Weight $\vartheta$, $I(B)\ast\vartheta\leq I(p)$. & Residuated lattice.\\
+\cite{MedinaOV01} & Conjunctors, disjunctors and aggregators, several adjoint pairs. & None. & Confidence $\vartheta$, adjoint pair per rule. & Bounded complete upper semilattice.\\
+\cite{CornejoLM18,CornejoLM20,CornejoLM20math} & One aggregator per rule; extended aggregators monotone in the first and antitone in the other arguments; core FASP: any monotone $f$. & Negation operator on atoms; several negations via antitone arguments (EMALP). & Weight $\vartheta$ with adjoint pairs (not in core FASP). & Complete lattice.\\
+\cite{HeyninckAB22arxiv} & General propositional formulas over $\neg,\land,\lor$ (Belnap); conjunctions of literals for the stable semantics. & Default negation $\neg$ with an involution. & None. & Belnap's four-valued bilattice.\\
+\cite{PelovT04} & Conjunction of literals; literals are atoms or monotone aggregate atoms. & Default negation on atoms and aggregates. & None. & Boolean, four-valued pairs.\\
+\cite{RiegelEtAl20} & Weighted Łukasiewicz connectives $\flpand_l^{w}$, $\flpor_l^{w}$, $\to$, Gödel and product variants; monotone activation functions. & $\neg x=1-x$. & Weights $w_i\geq0$ and bias $\beta\geq0$ per connective. & $[0,1]$ with bounds $[L,U]$.\\
+\cite{SenCRG22} & $\mathrm{LNN}\text{-}\land(x;\beta,w)=\mathrm{relu}_1(\beta-w^{\top}(1-x))$ and its dual. & $\neg x=1-x$. & Learnable $\beta$, $w\geq0$. & $[0,1]$ with threshold $\alpha$.\\
+\cite{Antic24} & Weighted threshold units $\sum w\cdot I(b)\geq\theta$; no connectives. & Negative weights act like negation. & Real weights and thresholds. & Boolean.\\
+\cite{KettmannHS25,KettmannSHS26arxiv} & Monotone connectives (conjunctors, disjunctors, aggregators) and constants. & $\flpnot $ antitone involution (2025: on atoms; 2026: also classical $\neg$). & Weight $\vartheta$ with adjoint pairs (2025); weight-free (2026). & Complete lattice; paraconsistent pairs in 2026.\\
+\end{longtable}
+
+\begin{longtable}{@{}p{0.18\textwidth}p{0.58\textwidth}p{0.20\textwidth}@{}}
+\caption{Translation into our syntax $a_1\flpor\dots\flpor a_n\flpif{\flpweight}B$.}\label{tab:syntax-translation}\\
+\toprule
+\textbf{Approach} & \textbf{Translation} & \textbf{Status}\\
+\midrule\endfirsthead
+\toprule
+\textbf{Approach} & \textbf{Translation} & \textbf{Status}\\
+\midrule\endhead
+\bottomrule\endfoot
+\cite{Guller2004procedural,Guller02} & Head disjunction as lattice join, weight $\flpweight=c$, body conjunction by the t-norm $\ast$ (2002: literals and the lattice meet). Graded disjunctions are consequences, not rules. & exact\\
+\cite{Saad2010disjunctive} & Body literal $l:\mu$ becomes $\gecon{\mu}(l)$ and $\mathbf{not}\,l:\mu$ becomes $\flpnot\gecon{\mu}(l)$; head $l_1\flpor\dots\flpor l_k\flpif{\mu}\dots$ if all head annotations equal $\mu$. Different annotations per disjunct need an existential head operator. & partial\\
+\cite{NievesOC07,NievesOC13} & $a_1\flpor\dots\flpor a_n\flpif{\alpha}\bigwedge B^+\land\bigwedge\flpnot b$ with join and meet of $Q$ and a Gödel negator. Their two layers (an answer set of the projection first, then weights) are not reproduced. & lossy\\
+\cite{BautersSDV14tplp} & Strong disjunction: weight $\flpweight=\lambda$, head disjunction max, body min, $\flpnot x=1-x$. Weak (clausal) disjunction is not expressible. & exact for the rule form, none for weak\\
+\cite{BautersSDV14ijar} & As the strong case; the weights as uncertainty about the rules (possibility over subprograms) are not truth-functional. & none for the second reading\\
+\cite{Lukasiewicz01} & Head $A_1\flpor\dots\flpor A_l$ with max, body min, weight $c$ via $c\flpand_l x=\max(c+x-1,0)$. Constants in the head of the reduct become $t\ominus d$ in the body. Model states have no counterpart in the syntax. & partial\\
+\cite{LukasiewiczS07} & Weight $v$, adjoint conjunctor $\flpand_{t_{0}}$, head disjunctor $\flpor_t$ per rule, body conjunction $\flpand_{t_{i}}$, $\flpnot=\ominus$. DL atoms are not part of our language. & exact for rules\\
+\cite{Mateis00} & Head with the t-conorm $S^{(p)}$, body with the t-norm $T^{(p)}$, weights combined by the product; interval weights $[x,y]$ and interval-valued interpretations need a lower and an upper program ($\flpweight=x$, $\flpweight=y$), which is a different semantics. & lossy\\
+\cite{MushthofaSD14,MushthofaSD15,MushthofaSD20,BlondeelSVD14} & Head $a_1\lkor\dots\lkor a_n$ with weight $1$; facts $a\leftarrow\lkc{c}$ become $a\flpif{c}\top$; max heads use the join; constraints use the encoding of Kettmann et al.\ with fresh atoms. Heads with $\flpand_l$ are outside our syntax. & exact for $\flpor_l$ and max heads\\
+\cite{AlvianoP15} & As above; $\flpand_l$-heads and max-heads are shifted by auxiliary Booleans (their eqs.~(5)--(7)). & exact for $\flpor_l$ and max\\
+\cite{SchockaertJVD09,SchockaertJV12} & Heads that are disjunctions of atoms translate directly; guess atoms $a\flpor_l\neg a\leftarrow$; arbitrary head formulas and the (here, there) semantics have no counterpart. & partial\\
+\cite{StracciaOD09} & Heads $g=\flpor_l$ or join of atoms give our heads; non-monotone body connectors and general head connectors are not covered. & partial\\
+\cite{VanNieuwenborghDV06,VanNieuwenborghDV07} & $a\leftarrow_1 T(b_1,\dots,b_n)$ with naf as $\flpnot$ and classical negation as literals. The aggregated rule degrees ($y$-models) are not representable. & lossy\\
+\cite{JanssenSVD09,JanssenVSD12,JanssenSVD12core,AlvianoP13,AlvianoAP17,LoyerS09} & $a\flpif{}B$ with the body as is; weights as $a\flpif{\flpweight}b$. Already covered by Kettmann et al.~(2025). & exact\\
+\cite{NicolasGSL06,MadridO12,CornejoLM18,CornejoLM20,CornejoLM20math,MedinaOV01,LukasiewiczS09} & $a\flpif{\flpweight}B$ with the aggregator or weight kept as is; constraints through fresh atoms. Covered by Kettmann et al.~(2025, 2026). & exact\\
+\cite{HeyninckAB22arxiv,PelovT04} & Crisp special case with $L=\{0,1\}$ and head disjunction $\vee$; aggregates are not covered. & exact (Boolean)\\
+\cite{RiegelEtAl20,SenCRG22} & Tight programs and the input-aware completion $a\leftrightarrow B_1\lor\dots\lor B_n$; weights and biases of the connectives are dropped. & partial\\
+\cite{Antic24} & $a\flpif{1}\gecon{\theta}(\ldots)$ with a threshold connective over the weighted sum. & exact (Boolean)\\
+\cite{KettmannHS25,KettmannSHS26arxiv} & Our syntax with $n=1$. & exact\\
+\end{longtable}
+
+\begin{longtable}{@{}p{0.17\textwidth}p{0.20\textwidth}p{0.58\textwidth}@{}}
+\caption{Operators and semantic notions for disjunctive heads.}\label{tab:operators}\\
+\toprule
+\textbf{Approach} & \textbf{Notion} & \textbf{Definition}\\
+\midrule\endfirsthead
+\toprule
+\textbf{Approach} & \textbf{Notion} & \textbf{Definition}\\
+\midrule\endhead
+\bottomrule\endfoot
+\cite{BlondeelSVD14,MushthofaSD14,MushthofaSD15,MushthofaSD20,AlvianoP15,LukasiewiczS07} & Reduct, answer set & $P^I$ replaces every $\mathbf{not}\,\alpha$ by the constant $1-I(\alpha)$ ($\ominus_iI(b_i)$ in LS07). $I$ is an answer set iff $I\models P$ and no $J<I$ satisfies $P^I$ (minimal model of $P^I$).\\
+\cite{MushthofaSD14} & Grid translation $\mathit{Tr}(P,k)$ & Level atoms $a_i$ with $a_i\equiv I(a)\geq\frac ik$, rules $a_i\leftarrow a_{i+1}$; head $a\,\max\,b\leftarrow c$ becomes $a_i\lor b_i\leftarrow c_i$; head $a\flpor_l b\leftarrow c$ becomes $p_{0,i}\lor\dots\lor p_{i,0}\leftarrow c_i$ with $a_s\leftarrow p_{s,t}$, $b_t\leftarrow p_{s,t}$.\\
+\cite{MushthofaSD15,AlvianoP15} & Shift & $a_1\flpor_l\dots\flpor_l a_n\leftarrow\beta$ becomes $a_i\leftarrow\beta\flpand_l\bigwedge\nolimits_{t,\,j\neq i}\flpnot a_j$ for all $i$; faithful for HCF programs (AP15) and for SRCF programs (MSD15).\\
+\cite{LukasiewiczS07} & Crisp transform & Over $\mathit{TV}_n$ (Zadeh only): atoms $a_\alpha$ for $\alpha\neq0$, rules $a^1_\alpha\lor\dots\lor a^l_\alpha\leftarrow b^1_\alpha,\dots,\mathbf{not}\,b^m_\gamma$ with $\gamma=1-\alpha+\frac1n$ for all $\alpha\leq v$, and $p_{\alpha-1/n}\leftarrow p_\alpha$.\\
+\cite{Guller2004procedural} & $\mathcal{C}_P$, $\mathit{DS}$, $\mathit{FS}$ & $(D,c)\in\mathcal{C}_P(I)$ iff $D=D_0\cup\bigcup_i(D_i\setminus\{b_i\})$ and $c=\vartheta\ast c_1\ast\dots\ast c_m$ for a rule $D_0\leftarrow_\vartheta b_1,\dots,b_m$ and $(D_i,c_i)\in I$ with $b_i\in D_i$; $\mathit{FS}(P)$ closes $\mathrm{lfp}(\mathcal{C}_P)$ under supersets and lower degrees; $\mathit{DS}(P)=\mathit{FS}(P)$.\\
+\cite{Lukasiewicz01} & Model, $T^M_P$, $T^s_P$ & $p\models C$ iff $\max(\max_ip(A_i),\max_jp(C_j))\geq c-1+\min_kp(B_k)$. $T^M_P(\mathcal P)=\bigcup_{p\in\mathcal P}\mathrm{models}_p(\mathrm{state}_{\mathcal P}(p))$ on up-closed sets of interpretations (lfp at $\omega$, $\mathit{MM}(P)=\mathrm{can}(\mathrm{lfp})$). $T^s_P(S)=\exp\{A^\alpha_1\lor\dots\lor A^\alpha_l\lor D_1\lor\dots\lor D_m\mid B_i^{\beta_i}\lor D_i\in S,\ \alpha=c-1+\min\beta_i\}$. Stable: minimal model of $P/q$ (head constant $\max q(C_j)$).\\
+\cite{Mateis00} & $p$-model, computation & $I(H(r))\geq T_2(I(B(r)),[x,y])$ with $T_2$ the product; a computation step picks an unsatisfied rule $r$ and $A\in H(r)$ and sets $I(A):=T_2(I(B(r)),[x,y])$; for $p=+\infty$ the choice tree is finite.\\
+\cite{StracciaOD09} & $T_P$, $F_P$, orbit & $T_P(I)=\{J\mid J\models P[I],\,I\leq J\}$, $F_P(I)=\{J\mid J\models P[I]\}$; an orbit starts at $\bot$, takes $x_{\alpha+1}\in T_P(x_\alpha)$ and suprema at limits; minimal fixed points are limits of orbits.\\
+\cite{Saad2010disjunctive} & Models, reduct & $I\models l:\mu$ iff $\mu\leq I(l)$; head satisfied iff some disjunct is; reduct drops rules with an unsatisfied $\mathbf{not}\,l:\mu$ and the negative literals; answer set = minimal model of the reduct.\\
+\cite{NievesOC13} & $P_M$, $\mathrm{GPPE}$, $T$, $\mathit{Sem}_{\min}$ & $P_M=\{n(r):A\cap M\leftarrow B^+\mid A\cap M\neq\emptyset,\,B^-\cap M=\emptyset,\,B^+\subseteq M\}$; $\mathrm{GPPE}(\alpha:A\leftarrow B^+\cup\{b\},\ \alpha_1:A_1)=\min(\alpha,\alpha_1):A\cup(A_1\setminus\{b\})\leftarrow B^+$ for $b\in A_1$; $T(P)=P\cup\{\mathrm{GPPE}(r_1,r_2)\}$; $\mathit{Sem}_{\min}(P)=\{(x,\bigvee\{\alpha\mid\alpha:x\in P\})\}$; answer set $M=\mathit{Sem}_{\min}(\Pi(P_{M^*}))$ for a classical answer set $M^*$.\\
+\cite{BautersSDV14tplp} & Strong answer set & Constraint $\max(N(l_0),\dots,N(l_k))\geq\min(N(l_{k+1}),\dots,1-V(l_{m+1}),\dots,\lambda)$; $V$ is an answer set iff some minimally specific possibility distribution $\pi$ has $N_\pi=V$.\\
+\cite{SchockaertJV12} & Equilibrium model & $V:\{h,t\}\times\mathit{At}\to$ subintervals of $[0,1]$ with $V(h,a)\supseteq V(t,a)$; $V(h,\mathbf{not}\,\alpha)=[1-V^-(t,\alpha),1-V^-(h,\alpha)]$; model iff $V^-(h,\alpha)=1$; $V\preceq V'$ iff $V(t,\cdot)=V'(t,\cdot)$ and $V(h,\cdot)\supseteq V'(h,\cdot)$; equilibrium model: $\preceq$-minimal with $V(h,\cdot)=V(t,\cdot)$.\\
+\cite{HeyninckAB22arxiv} & $\mathit{IC}_P$, stable, WF state & $\mathit{IC}^l_P(x,y)=\{x_1\subseteq\bigcup HD^l\mid\forall\Delta\in HD^l\colon x_1\cap\Delta\neq\emptyset\}$ with $HD^l$ the heads of rules whose body holds at $(x,y)$; $\mathit{IC}^u_P(x,y)=\mathit{IC}^l_P(y,x)$; stable operator $\mathrm{C}(\mathit{IC}^l_P)(y)=\min\{x\mid x\in\mathit{IC}^l_P(x,y)\}$; well-founded state $=\mathrm{KK}(\mathrm{S}(\mathit{IC}_P)')$.\\
+\cite{PelovT04} & $N_P^{\mathit{Sel}}$ & $N_P^{\mathit{Sel}}(I)=\mathit{Sel}(HR_P(I))$ with $HR_P(I)$ the heads of rules whose body holds in $I$; $\mathit{Mod}(P)=\mathrm{pre}(N_P)$; stable iff $I\in\mathrm{mfp}(A_P(\cdot,I))$.\\
+\cite{LoyerS02} & $T_P$, $S_P$, $\mathit{CS}$ (normal programs with $f_d$) & $T_P(I,J)(A)=f_d(\{f_p(\alpha_r,f_c(I(B_i),\neg J(C_j)))\mid r\text{ has head }A\})$; $S_P(J)=\mathrm{lfp}\,T_P(\cdot,J)$; $S^\bot_P=(S_P\circ S_P)^\infty(I_\bot)$, $S^\top_P=(S_P\circ S_P)^\infty(I_\top)$; $\mathit{CS}(P)=S^\bot_P\cap S^\top_P$.\\
+Ours & $N$, stable, KK and WF state & $N_l(L,U)=\{J\mid\forall r\colon J(a_1)\mathbin{\flpcontf{\flpor_r}}\dots\mathbin{\flpcontf{\flpor_r}}J(a_n)\geq\flpweight_r\mathbin{\flpcontf{\flpand}}(L,U)^{B_r},\ J\leq\mathrm{cap}\}$, $N_u(L,U)=N_l(U,L)$; $(I,I)$ stable iff $I\in\min N_l(\cdot,I)$ iff $I$ is a minimal model of $P^I$; KK and WF states as in HAB.\\
+\end{longtable}
+}
+
+{\scriptsize
+\begin{longtable}{@{}p{0.20\textwidth}p{0.50\textwidth}p{0.25\textwidth}@{}}
+\caption{Fixpoint constructions on the running example.}\label{tab:example}\\
+\toprule
+\textbf{Operator} & \textbf{Construction} & \textbf{Result}\\
+\midrule\endfirsthead
+\toprule
+\textbf{Operator} & \textbf{Construction} & \textbf{Result}\\
+\midrule\endhead
+\bottomrule\endfoot
+Models of $P$ & $\max(a,b)\geq0.8$, $c\geq a$, $c\geq b$ & minimal: $(0.8,0,0.8)$, $(0,0.8,0.8)$\\
+Answer sets \cite{BlondeelSVD14,MushthofaSD15,AlvianoP15,LukasiewiczS07}, equilibrium models \cite{SchockaertJV12}, Bauters strong \cite{BautersSDV14tplp}, Saad (equal annotations) & minimal models of $P^I=P$; equilibrium: $V(h,\cdot)=V(t,\cdot)=[I,1]$ & the two minimal models; Bauters: $\{a^{.8},c^{.8}\}$, $\{b^{.8},c^{.8}\}$\\
+Ours, $N_l$ & $N_l(\bot)$: $\min=\{(.8,0,0),(0,.8,0)\}$; then $\{(.8,0,.8),(0,.8,.8)\}$; fixed. Upper: $\downarrow\!\{(.8,.8,1)\}$, then $\downarrow\!\{(.8,.8,.8)\}$ & KK state $(\uparrow\!\{(.8,0,.8),(0,.8,.8)\},\ \downarrow\!\{(.8,.8,.8)\})$\\
+Ours, stable and WF & $C(N_l)(y)=\min\mathrm{mod}(P)$ for all $y$; one step from the KK state & stable $(I,I)$ for both minimal models; WF $=(\min\!\uparrow,\ \min\!\downarrow)$\\
+Shifted approximator (draft) & lower bound of $a$: $\bigglb\{z\mid z\flpcontf{\flpor_g}U(b)\geq0.8\}=0$ because $U(b)=1$; upper bound of $a,b$: $0.8$; of $c$: $U(a)\flpcontf{\flpor_g}U(b)$ & KK $=((0,0,0),(.8,.8,.8))$: $c$ undecided; stable fixpoints: the two minimal models\\
+Straccia et al. $T_P$ \cite{StracciaOD09} & $x_0=\bot$; $T_P(x_0)\ni(.8,0,0),(0,.8,0)$; then $(.8,0,.8)$ resp.\ $(0,.8,.8)$ & two orbits, two minimal models\\
+Mateis, $p=+\infty$ \cite{Mateis00} & root $\bot$; raise $a$ or $b$ to $0.8$; then raise $c$ to $0.8$ & choice tree of depth $2$, same leaves\\
+Lukasiewicz $T^M_P$ \cite{Lukasiewicz01} & grid $\{0,.2,\dots,1\}$; minimal elements of $T^M\!\uparrow k$: $\{(.8,0,0),(0,.8,0)\}$, then $\{(.8,0,.8),(0,.8,.8)\}$ & $\mathit{MM}(P)$ after $2$ steps\\
+Lukasiewicz $T^s_P$ & $a^{.8}\lor b^{.8}$; $c^{.8}\lor b^{.8}$, $c^{.8}\lor a^{.8}$; $c^{.8}$ & $c^{.8}\in\mathit{MS}_P$\\
+Guller $\mathcal{C}_P$ \cite{Guller2004procedural} & $(\{a,b\},.8)$; $(\{c,b\},.8)$, $(\{c,a\},.8)$; $(\{c\},.8)$ & $(\{c\},.8)\in\mathit{FS}(P)$\\
+Nieves $T$ \cite{NievesOC13} & $P$; $+0.8:c\lor b$, $+0.8:c\lor a$; $+0.8:c$; $P_{\{a,c\}}$ gives $\{(a,.8),(c,.8)\}$ & $\mathit{Sem}_{\min}\ni(c,.8)$; two answer sets\\
+Grid translation \cite{MushthofaSD14} & $k=5$: $a_i\lor b_i\leftarrow\top$ for $i\leq4$, $c_i\leftarrow a_i$, $c_i\leftarrow b_i$ & $M_5(A)$: both minimal models\\
+With $\flpor_l$ instead of $\flpor_g$ & $a+b\geq0.8$, $c\geq\max(a,b)$; shift $a\flpif{}0.8\flpand_l\flpnot b$, $b\flpif{}0.8\flpand_l\flpnot a$ (HCF) & continuum $(x,0.8-x,\max(x,0.8-x))$\\
+Loyer--Straccia \cite{LoyerS02} & $f_d$ merges the rules of one head atom, not the atoms of one head & not applicable\\
+\end{longtable}
+}
+
+{\scriptsize
+\begin{longtable}{@{}p{0.15\textwidth}p{0.27\textwidth}p{0.19\textwidth}p{0.24\textwidth}p{0.05\textwidth}@{}}
+\caption{Examples of related work under $N$.}\label{tab:examples-literature}\\
+\toprule
+\textbf{Source} & \textbf{Program} & \textbf{Published} & \textbf{Stable fixpoints $(I,I)$ of $N$} & \textbf{Match}\\
+\midrule\endfirsthead
+\toprule
+\textbf{Source} & \textbf{Program} & \textbf{Published} & \textbf{Stable fixpoints $(I,I)$ of $N$} & \textbf{Match}\\
+\midrule\endhead
+\bottomrule\endfoot
+\cite{MushthofaSD15}, Ex.~1 & $\{a\leftarrow\flpnot  c,\ b\leftarrow\flpnot  c,\ c\leftarrow a\flpor_l b,\ d\flpor_l e\leftarrow c\}$ & $(\frac13,\frac13,\frac23,\frac23-x,x)$, none on $L_k$ for $3\nmid k$ & $k=3$: $x\in\{0,\frac13,\frac23\}$; $k=2$: none & yes\\
+\cite{MushthofaSD15,MushthofaSD20}, Ex.~2 & $\{a\flpor_l b\leftarrow1,\ a\leftarrow b,\ b\leftarrow a\}$ & $(\frac12,\frac12)$ on $[0,1]$, $(1,1)$ on $L_1$ & $k=1$: $(1,1)$; $k=2,4$: $(\frac12,\frac12)$, also the WF state & yes\\
+\cite{MushthofaSD20}, Ex.~3 & $\{a\flpor_l b\leftarrow1,\ b\leftarrow a,\ a\leftarrow a\flpor_l b\}$ & $(1,1)$; its shift has none & $(1,1)$ for $k=1,2,4$; shift: none & yes\\
+\cite{BlondeelSVD14}, Ex.~2 & $\{a\leftarrow\flpnot  b,\ b\leftarrow\flpnot  a\}$ & $(x,1-x)$ & all grid points $(\frac ik,1-\frac ik)$; KK $=$ WF $=((0,0),(1,1))$ & yes\\
+\cite{SchockaertJV12}, Ex.~9 & $\{a\flpor_l b\flpor_l b\leftarrow1\}$ vs.\ with $\flpor_g$ & fuzzy and crisp models differ & $\flpor_l$ ($k=4$): $(0,\frac12),(\frac12,\frac14),(1,0)$; $\flpor_g$: $(1,0),(0,1)$ & yes\\
+\cite{NievesOC13}, Ex.~5 & $\{0.6{:}a\lor b,\ 0.4{:}a\leftarrow\flpnot  b,\ 0.8{:}b\leftarrow\flpnot  a\}$, Gödel $\flpnot $ & $\{(a,.6)\}$, $\{(b,.8)\}$ & $(.6,0)$, $(0,.8)$ & yes\\
+\cite{NievesOC13}, Ex.~7 (weights on the $0.2$ grid) & $\{.8{:}a\lor b\leftarrow\flpnot  c,\ .6{:}c\leftarrow\flpnot  a,\flpnot  b,\ .8{:}a\leftarrow b,\ 1{:}e\leftarrow b,\ .6{:}b\leftarrow a,\ .4{:}b\leftarrow a\}$ & $\{(a,.7),(b,.6),(e,.6)\}$, $\{(c,.6)\}$ (unscaled) & $(a,b,c,e)=(.8,.6,0,.6)$, $(0,0,.6,0)$ & yes\\
+\cite{BautersSDV14tplp}, Ex.~7 & $\{.8{:}a;b,\ .6{:}c\leftarrow a,\ .4{:}c\leftarrow b\}$ & $\{a^{.8},c^{.6}\}$, $\{b^{.8},c^{.4}\}$ & $(.8,0,.6)$, $(0,.8,.4)$ & yes\\
+\cite{BautersSDV14tplp} & $\{1{:}a\leftarrow\flpnot  a\}$ & $\{a^{.5}\}$ & $a=\frac12$ & yes\\
+\cite{HeyninckAB22arxiv}, Ex.~21 & $\{p\lor q\lor r\leftarrow;\ p\leftarrow\flpnot  q;\ r\leftarrow\flpnot  p;\ q\leftarrow\flpnot  r\}$ (crisp) & no stable fixpoint, no KK interpretation & no stable pair; KK state exists with minimal lower elements $\{p\},\{q\},\{r\}$ & yes\\
+Approximator section, Ex.~2 ($P_1$, $P_2$) & $\{a\flpor_l b\leftarrow1\}$ vs.\ $\{a\flpor_g b\leftarrow1\}$ & --- & $a+b=1$ (all grid points) vs.\ $(1,0),(0,1)$ & ---\\
+Approximator section, Ex.~3 & $\{a\lor b,\ a\lor c,\ b\lor c\leftarrow1\}$ & three crisp minimal models & crisp: the three; $\flpor_l$ ($k=4$): also $(\frac12,\frac12,\frac12)$ and $(\frac ik,1-\frac ik,\dots)$; $\flpor_g$: the three & ---\\
+\cite{NievesOC13}, counterexample & $\{0.9{:}a\lor b,\ 0.5{:}a\}$ & only $\{(a,.9)\}$ & $(.9,0)$ and $(.5,.9)$ & no: more stable fixpoints\\
+\end{longtable}
+
+\begin{longtable}{@{}p{0.15\textwidth}p{0.30\textwidth}p{0.27\textwidth}p{0.24\textwidth}@{}}
+\caption{Where the syntax, the connectives and the semantics are defined.}\label{tab:syntax-locations}\\
+\toprule
+\textbf{Approach} & \textbf{Syntax} & \textbf{Connectives} & \textbf{Semantics}\\
+\midrule\endfirsthead
+\toprule
+\textbf{Approach} & \textbf{Syntax} & \textbf{Connectives} & \textbf{Semantics}\\
+\midrule\endhead
+\bottomrule\endfoot
+\cite{VanNieuwenborghDV06} & Sect.~2.2, p.~4; Sect.~3, p.~5; Defs.~1--3, pp.~6--7 & Sect.~2.1, p.~3; Ex.~2, p.~4 & Def.~4, p.~7; Def.~5, pp.~8--9\\
+\cite{VanNieuwenborghDV07} & Sect.~2.2, p.~368; Sect.~3, pp.~369--370 & Sect.~2.1, pp.~366--367 & Def.~4, p.~374; Sect.~5\\
+\cite{JanssenSVD09} & Sect.~2, pp.~353--354 & Sect.~2, p.~353; footnote~1, p.~354 & Sect.~3, p.~356; Def.~1, p.~357\\
+\cite{JanssenVSD12} & Sect.~3, pp.~6--7 & Sect.~2, Tables~1--2, p.~5 & Defs.~1--3, pp.~7--8\\
+\cite{JanssenSVD12core} & Sect.~3.1, Defs.~1--3, p.~4; Sect.~4.1, eq.~(3), p.~6 & Sect.~2, Tables~1--2, pp.~3--4; Def.~2, p.~4 & Defs.~4--7\\
+\cite{SchockaertJVD09} & Sect.~2.1, p.~138; Sect.~2.2, pp.~139--140 & Sect.~2.2, pp.~139--140; Sect.~3.1, p.~141 & Defs.~6--8, p.~142; Props.~2--4\\
+\cite{SchockaertJV12} & Sect.~2.4, eq.~(10), pp.~120--121; Sect.~3.1 & Sect.~2.3, Table~I, pp.~118--120; p.~121 & Sect.~2.4, p.~121; Defs.~3--4, Sect.~3.1\\
+\cite{BlondeelSVD14} & Sect.~2.1, p.~8; Sect.~2.3, pp.~11--12 & Sect.~2.2, pp.~9--10; Sect.~2.3, pp.~11--12 & Sect.~2.3, pp.~12--13\\
+\cite{MushthofaSD14} & Sect.~3, PDF p.~2 (right column) & Sect.~3, PDF p.~2; Sect.~4.1 & Sect.~3, PDF p.~2\\
+\cite{MushthofaSD15} & Sect.~2.1, pp.~455--456 & Sect.~2.1, p.~456 & Sect.~2.1, p.~456\\
+\cite{MushthofaSD20} & Sect.~1.3, p.~4 & Sect.~1.3, p.~5 & Sect.~1.3, p.~5\\
+\cite{AlvianoP13} & Sect.~2, p.~3 & Sect.~2, p.~3 & Sect.~2, p.~3; Def.~1\\
+\cite{AlvianoP15} & Sect.~2.1, pp.~3--4 & Sect.~2.1, p.~4; Sect.~3, pp.~5--6 & Sect.~2.1, p.~4\\
+\cite{AlvianoAP17} & Preliminaries, p.~3695 & Preliminaries, p.~3695 & Preliminaries, p.~3695\\
+\cite{Lukasiewicz01} & Sect.~2.3, p.~339 & Sect.~2.2, eq.~(1), p.~339 & Sect.~2.3, p.~340; Sects.~3--4\\
+\cite{LukasiewiczS07} & Sect.~4.1, eq.~(7), p.~7 & Sect.~2, p.~2; Tables~1--3 & Sect.~4.2, eq.~(8), p.~9\\
+\cite{LukasiewiczS09} & Sect.~4.1, eq.~(20), p.~844 & Sect.~3.1, Table~1, p.~840 & Sect.~4.2, p.~845\\
+\cite{Mateis00} & Sect.~3.1, pp.~227--228 & Sect.~2, pp.~226--227 & Sect.~3.2, eq.~(1), p.~228\\
+\cite{Guller02} & Sect.~3, p.~253 & Table~1, p.~253 & Sect.~4, Defs.~2--4, p.~254\\
+\cite{Guller2004procedural} & pp.~519--520; Sect.~2.2 & Sect.~2.1, p.~520; Table~1, p.~521 & Sect.~3, Defs.~1--3, pp.~523--524\\
+\cite{Saad2009extended} & Sect.~4, Defs.~1--2, pp.~228--229 & Sect.~3, pp.~227--228 & Sect.~4.1, Defs.~3--9, pp.~230--231; Sect.~5\\
+\cite{Saad2010disjunctive} & Sect.~3, Defs.~1--2, p.~309 & Sect.~2, pp.~308--309 & Sect.~3.1, Defs.~3--9, pp.~310--312; Sect.~4, Defs.~10--11, p.~313\\
+\cite{NievesOC07} & Sect.~2.2, Remark~1, p.~8 & Def.~4, p.~9 & Sect.~4, Defs.~5--6, pp.~15--16\\
+\cite{NievesOC13} & Sect.~2.2, Remark~1, p.~40 & Def.~4, p.~41 & Sect.~4, Defs.~5--6, pp.~47--48\\
+\cite{NicolasGSL06} & Defs.~2--3 & Defs.~8--9, p.~150 & Defs.~10--11, p.~152\\
+\cite{BautersSDV14tplp} & Sect.~2.1, p.~6; Sect.~3 & Sect.~4, eqs.~(5)--(6), pp.~19--20 & Defs.~4--5, p.~15; Sect.~4\\
+\cite{BautersSDV14ijar} & Sect.~2.1, p.~6 & Sect.~2.3, p.~11 & Defs.~1--2, p.~12\\
+\cite{StracciaOD09} & Sect.~4, p.~1898 & Sect.~4, p.~1898; Props.~4.1--4.5 & Sect.~4.1, p.~1901\\
+\cite{LoyerS09} & Sect.~2, p.~391 & Sect.~2, pp.~390--391 & Defs.~1--3, pp.~393--394\\
+\cite{MadridO12} & Def.~2.2, p.~311 & Def.~2.1, Remark~1, p.~311 & Defs.~2.3--2.4, p.~312\\
+\cite{MedinaOV01} & Sect.~3.1, Def.~10, p.~356 & Defs.~4--6, pp.~352--354 & Defs.~11--14, pp.~356--357\\
+\cite{CornejoLM18} & Sect.~3, Def.~17, p.~9 & Defs.~9--11, pp.~6--7 & Def.~18, p.~10; Def.~20, p.~11; Def.~24, p.~13\\
+\cite{CornejoLM20} & Sect.~3, Defs.~9--10, pp.~8--9 & Def.~9, pp.~8--10 & Defs.~12--14, pp.~11--12\\
+\cite{CornejoLM20math} & Def.~2, p.~3; Defs.~6--7, p.~5 & Def.~1, pp.~2--3 & Defs.~3--5, pp.~3--5; Defs.~8--12\\
+\cite{HeyninckAB22arxiv} & Sect.~2.1, p.~5 & Sect.~2.1, pp.~5--6; Def.~3 & Def.~1, p.~6; Defs.~2--3\\
+\cite{PelovT04} & Preliminaries, PDF pp.~1--2 & Preliminaries, PDF pp.~1--2 & Defs.~1--5, PDF pp.~2--4\\
+\cite{RiegelEtAl20} & Sect.~3, pp.~3--4; eqs.~(1)--(3), p.~4 & Sect.~3.1, pp.~3--4; eqs.~(9)--(24), pp.~14--15 & Sect.~4, pp.~5--6\\
+\cite{SenCRG22} & Sect.~4, PDF pp.~3--4 & Sect.~3, PDF pp.~2--3; eq.~(1) & Sects.~4.1--4.4, PDF pp.~4--5\\
+\cite{Antic24} & Sect.~3.1, rule~(3), p.~5 & Sect.~2.1, p.~2; Def.~7 & Defs.~1--5, pp.~3ff.\\
+\cite{KettmannHS25} & Sect.~2.2, eqs.~(1)--(2), PDF p.~3 & Sect.~2.2, PDF p.~3 & Eq.~(4), Def.~1, PDF pp.~3--4\\
+\cite{KettmannSHS26arxiv} & Sect.~3, Def.~1, pp.~6--7 & Sect.~2.2, p.~5; p.~7 & Defs.~3--4, pp.~8 and 10\\
+\end{longtable}
+}
+\endgroup
