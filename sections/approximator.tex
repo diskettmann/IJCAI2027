@@ -1,0 +1,121 @@
+
+A \define{disjunctive fuzzy logic program} is a set of rules of the form
+\[
+    \atom_1 \flpor \atom_2 \flpor \dots\flpor \atom_n \flpif{} \body.
+\]
+The disjunction $\atom_1 \flpor \atom_2 \flpor \dots\flpor \atom_n$ is called the \define{head}. We can write this head disjunction $\head=\atom_1 \flpor \atom_2 \flpor \dots\flpor \atom_n$ as $\atom_i \flpor \headminus[\atom_i]$, where $\atom_i$ is any of the head atoms and $\headminus[\atom_i]$ is the disjunction formed by all the remaining head atoms.
+Given $\flpand,\flpor,\flpnot$, the tuple $\tuple{\flpand,\flpor,\flpnot}$ is called a \define{dual triple} \cite{Klir1995} iff for all $x,y\in\lset$ the de Morgan laws are satisfied:
+\begin{align}
+    \flpnot (x\flpand y) & =  \flpnot x \flpor \flpnot y  \\
+    \flpnot (x\flpor y)  & =  \flpnot x \flpand \flpnot y
+\end{align}
+
+\begin{definition}
+    \label{def:consequence-operator}
+    Let $\flp$ be a disjunctive fuzzy logic program.
+    Its associated \emph{immediate consequence operator $\lpop$} is given by
+    \[
+        \lpop(\fint)(\atom) \eqdef \biglub \set{\bigglb\{z\in\lset \mid z\flpcontf{\flpor}\fformeval{\fint}{\headminus}\geq\fformeval{\fint}{\body}\} \guard \atom \flpor \headminus\flpif{}\body \in \flp}.
+        % \lpop(\fint)(\atom) \eqdef \biglub \set{\flpnotf\fformeval{\fint}{\head_{\atom}}\flpcontf{\flpand}\fformeval{\fint}{\body} \guard \atom \flpor \head_{\atom}\flpif{}\body \in \flp}.
+        % \lpop(\fint)(\atom) \eqdef \biglub \set{\fformeval{\fint}{\body} \guard \atom \flpor \head_{\atom}\flpif{}\body \in \flp \tand\fformeval{\fint}{\head_{\atom}}<\fformeval{\fint}{\body} }.
+    \]
+\end{definition}
+\begin{proposition}
+    For any disjunctive fuzzy logic program $\flp$ with idempotent disjunction in the head of each rule, we have
+    \[
+        \lpop(\fint)(\atom) = \biglub \set{\flpnotf\fformeval{\fint}{\head_{\atom}}\flpcontf{\flpand}\fformeval{\fint}{\body} \guard \atom \flpor \headminus\flpif{}\body \in \flp \tand \fformeval{\fint}{\headminus}<\fformeval{\fint}{\body}}.
+    \]
+\end{proposition}
+\begin{example}
+    Consider the programs $\flp_1 = \set{a \flpor_L b \lpif{} \grtst}$ and $\flp_2 = \set{a \flpor_G b \lpif{} \grtst}$ over $\lset=[0,1]$, where $\flpor_L$ denotes the s-norm \mbox{$x \flpor_L y = \min(1,x+y)$} and $\flpor_G$ denotes the Gödel s-norm $x \flpor_G y= \max(x,y)$. Any interpretation $\fint$ with $\fint(a)+\fint(b)\geq 1$ is a model of $\flp_1$ and any interpretation $\fintalt$ with $\fintalt(a)= 1$ or $\fintalt(b)=1$ is a model of $\flp_2$.
+\end{example}
+
+\begin{definition}
+    \label{def:approximator}
+    For a disjunctive fuzzy logic program $\flp$, we associate the symmetric approximator \mbox{$\lpap\colon\bil[\Fint]\to\bil[\Fint]$} with
+    \[
+        \fst{\lpap(\lint, \uint)}(\atom) \eqdef \biglub \set{\bigglb\{z\in\lset \mid z\flpcontf{\flpor}\fformeval{\uint}{\headminus}\geq\fnformeval{\lint}{\uint}{\body}\} \guard \atom \flpor \headminus\flpif{}\body \in \flp}
+        % \fst{\lpap(\lint, \uint)}(\atom) \eqdef \biglub \set{\fnformeval{\lint}{\uint}{\body} \guard \atom \flpor \headminus\flpif{}\body \in \flp \tand\fnformeval{\lint}{\uint}{\headminus}<\fnformeval{\lint}{\uint}{\body} }
+    \]
+    \noindent There, $\fnformeval{\lint}{\uint}{\varphi}$ is defined via induction with base cases
+    $\fnformeval{\lint}{\uint}{\atom}\eqdef\fformeval{\lint}{\atom}$ and
+    $\fnformeval{\lint}{\uint}{\flpnot\literal}\eqdef\flpnotf\fformeval{\uint}{\literal}$ for $\atom\in\Atoms$, and inductive case
+    $\fnformeval{\lint}{\uint}{f(\varphi_1,\ldots,\varphi_n)}\eqdef\flpcontf{f}\!\!\left(\fnformeval{\lint}{\uint}{\varphi_1},\ldots,\fnformeval{\lint}{\uint}{\varphi_n}\right)$ for any $f^{(n)}\in\Flpcon$.
+\end{definition}
+
+\begin{proposition}
+    $\lpap$ approximates $\lpop$ and is $\pleq$-monotone.
+    \begin{proof}
+        \begin{description}
+            \item[\normalfont$\lpap$ approximates $\lpop$:]
+                  For any $\fint\in\Fint$, by symmetry of $\lpap$ we have
+                  $\fst{\lpap(\fint,\fint)}=\snd{\lpap(\fint,\fint)}$ with
+                  \[
+                      \fst{\lpap(\fint, \fint)}(\atom) \eqdef \biglub \set{\bigglb\{z\in\lset \mid z\flpcontf{\flpor}\fformeval{\fint}{\headminus}\geq\fnformeval{\fint}{\fint}{\body}\} \guard \atom \flpor \headminus\flpif{}\body \in \flp}
+                  \]
+                  whence the claim follows because $\fnformeval{\fint}{\fint}{\body}=\fformeval{\fint}{\body}$.
+
+            \item[\normalfont$\lpap$ is $\pleq$-monotone:]
+                  Consider $(\lint_1,\uint_1)\pleq(\lint_2,\uint_2)$, i.e.\ $\lint_1\lleq\lint_2$ and $\uint_2\lleq\uint_1$.
+
+                  For any $\atom\in\Atoms$, we have $\uint_2(\atom)\lleq\uint_1(\atom)$, whence
+                  $\flpnotf\uint_1(\atom)\lleq\flpnotf\uint_2(\atom)$ (because $\flpnotf$ is antimonotone).
+                  Since additionally $\lint_1(\atom)\lleq\lint_2(\atom)$, we obtain
+                  $\fnformeval{\lint_1}{\uint_1}{\atom}\lleq\fnformeval{\lint_2}{\uint_2}{\atom}$
+                  and likewise $\fnformeval{\lint_1}{\uint_1}{\flpnot\atom}\lleq\fnformeval{\lint_2}{\uint_2}{\flpnot\atom}$.
+                  By structural induction (using that, for every $f\in\Flpcon$, $\flpcontf{f}$ is pointwise $\lleq$-monotone) we obtain
+                  \[
+                      \fnformeval{\lint_1}{\uint_1}{\varphi}\lleq\fnformeval{\lint_2}{\uint_2}{\varphi}
+                      \tag{$\ast$}
+                  \]
+                  for every normal fuzzy formula $\varphi$.
+
+                  Consider the rule $r = \atom \flpor \headminus\flpif{}\body \in \flp$ and the sets
+                  \[
+                      \lset_{r,(\lint_1,\uint_1)} =\set{z\in\lset \mid z\flpcontf{\flpor}\fformeval{\uint_1}{\headminus}\geq\fnformeval{\lint_1}{\uint_1}{\body}} \tand
+                      \lset_{r,(\lint_2,\uint_2)} =\set{z\in\lset \mid z\flpcontf{\flpor}\fformeval{\uint_2}{\headminus}\geq\fnformeval{\lint_2}{\uint_2}{\body}}.
+                  \]
+
+                  By $(\ast)$ applied to $\body$, we have $\fnformeval{\lint_1}{\uint_1}{\body}\lleq\fnformeval{\lint_2}{\uint_2}{\body}$.
+                  Since also $\uint_2\lleq\uint_1$ and $\flpcontf{\flpor}$ is monotone in both arguments,
+                  \[
+                      c \flpcontf{\flpor}\fformeval{\uint_2}{\headminus}\ \leq\ c \flpcontf{\flpor} \fformeval{\uint_1}{\headminus} \qquad\text{for all } c\in\lset.
+                  \]
+                  Hence, for any $c\in\lset_{r,(\lint_2,\uint_2)}$,
+                  \[
+                      c \flpcontf{\flpor}\fformeval{\uint_1}{\headminus}\ \geq\ c \flpcontf{\flpor}\fformeval{\uint_2}{\headminus}\ \geq\ \fnformeval{\lint_2}{\uint_2}{\body}\ \geq\ \fnformeval{\lint_1}{\uint_1}{\body},
+                  \]
+                  and therefore $c\in\lset_{r,(\lint_1,\uint_1)}$. This shows
+                  \[
+                      \lset_{r,(\lint_2,\uint_2)}\ \subseteq\ \lset_{r,(\lint_1,\uint_1)},
+                  \]
+                  and since $\bigglb$ is antimonotone w.r.t. set inclusion, we have
+                  \[
+                      \bigglb\,\lset_{r,(\lint_1,\uint_1)} \ \leq\ \bigglb\,\lset_{r,(\lint_2,\uint_2)}.
+                  \]
+
+                  Now consider any $\atom\in\Atoms$ and let $R_\atom$ denote the set of all rules where $\atom$ occurs in the head. For every $r\in R_\atom$, we have
+                  \[
+                      \bigglb\,\lset_{r,(\lint_1,\uint_1)} \ \leq\ \bigglb\,\lset_{r,(\lint_2,\uint_2)} \ \leq\ \biglub\set{\bigglb\,\lset_{r',(\lint_2,\uint_2)}\mid r'\in R_\atom},
+                  \]
+                  thus $\biglub\set{\bigglb\,\lset_{r',(\lint_2,\uint_2)}\mid r'\in R_\atom}$ is an upper bound of $\set{\bigglb\,\lset_{r',(\lint_1,\uint_1)} \guard r\in R_\atom}$.
+                  Since $\fst{\lpap(\lint_1,\uint_1)}(\atom)$ is by definition the least upper bound of $\set{\bigglb\,\lset_{r',(\lint_1,\uint_1)} \guard r\in R_\atom}$, it follows that
+                  \[
+                      \fst{\lpap(\lint_1,\uint_1)}(\atom)\ \lleq\ \biglub\set{\bigglb\,\lset_{r',(\lint_2,\uint_2)}\mid r'\in R_\atom} = \fst{\lpap(\lint_2,\uint_2)}(\atom),
+                  \]
+                  thus $\fst{\lpap(\lint_1,\uint_1)}\lleq\fst{\lpap(\lint_2,\uint_2)}$, and by symmetry of $\lpap$  also $\snd{\lpap(\lint_2,\uint_2)}\lleq\snd{\lpap(\lint_1,\uint_1)}$. Together, these give $\lpap(\lint_1,\uint_1)\pleq\lpap(\lint_2,\uint_2)$.
+        \end{description}
+    \end{proof}
+\end{proposition}
+
+
+\begin{example}
+    Consider the program
+    \mbox{$\flp = \set{ a \flpor b \lpif{} \grtst ,\; a \flpor c \lpif{} \grtst ,\; b \flpor c \lpif{} \grtst}$}.
+    The $\tleq$-least crisp models of $\flp$ are the interpretations
+    \begin{align*}
+        \fint_1 & =\set{a\mapsto \least, b\mapsto\grtst, c\mapsto\grtst}  \\
+        \fint_2 & =\set{a\mapsto \grtst, b\mapsto\grtst, c\mapsto\least}  \\
+        \fint_3 & =\set{a\mapsto \grtst, b\mapsto\least, c\mapsto\grtst}.
+    \end{align*}
+\end{example}
