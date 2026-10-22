@@ -35,4 +35,36 @@
 
 \newcommand{\PosToFuz}[1]{#1_{trans}}
 
+\newcommand{\dflptext}{dFLP\xspace}
+\newcommand{\dflpstext}{dFLPs\xspace}
 
+\newcommand{\gdis}{D}
+\newcommand{\gdisalt}{D'}
+\newcommand{\gsub}{\sqsubseteq}
+\newcommand{\gpair}[2]{\tuple{#1,#2}}
+\newcommand{\Gdis}{\mathcal{D}}
+\newcommand{\dflpr}{\gdis \flpif{\flpweight} \body}
+
+\newcommand{\gop}[1][\flp]{\flpoperator{\mathcal{C}}{#1}}
+\newcommand{\gdsem}[1][\flp]{\mathit{DS}(#1)}
+\newcommand{\gfsem}[1][\flp]{\mathit{FS}(#1)}
+
+\newcommand{\edptext}{ed-program\xspace}
+\newcommand{\edpstext}{ed-programs\xspace}
+
+\newcommand{\Saadhead}{\ann{\literal_1}{c_1}\flpor\dots\flpor\ann{\literal_k}{c_k}}
+\newcommand{\Saadbody}{\ann{\literal_{k+1}}{c_{k+1}},\dots,\ann{\literal_m}{c_m},\flpnot\ann{\literal_{m+1}}{c_{m+1}},\dots,\flpnot\ann{\literal_n}{c_n}}
+\newcommand{\Saaddr}{\Saadhead\lpif{}\Saadbody}
+\newcommand{\Saadleq}{\leq_A}
+
+\newcommand{\fasptext}{FASP\xspace}
+\newcommand{\faspstext}{FASPs\xspace}
+
+\newcommand{\lkand}{\flpand_l}
+\newcommand{\lkor}{\flpor_l}
+\newcommand{\lkmax}{\flpor_g}
+\newcommand{\lkmin}{\flpand_g}
+\newcommand{\lkc}[1]{\overline{#1}}
+\newcommand{\lkset}[1][k]{\lset_{#1}}
+\newcommand{\lkred}[1][\fint]{\flp^{#1}}
+\newcommand{\lkshift}[1][\flp]{#1^{\mathrm{sh}}}
