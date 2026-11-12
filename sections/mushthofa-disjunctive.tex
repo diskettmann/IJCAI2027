@@ -1,0 +1,69 @@
+\subsection{Disjunctive Fuzzy Answer Set Programs \protect\cite{Mushthofa2015}}
+
+\citet{Mushthofy2015} follow the definitions of \fasptext as described by \citet{BlondeelSVD14} and \citet{JanssenSVD09}.
+Here, formulas are built from (propositional) atoms $\atom\in\Atoms$, constants $c\in\lset'$, classical literals $\literal\in\literals{\Atoms}$, default negated atoms(NAF-literals) $\flpnot\atom$ and fuzzy connectives drawn from \mbox{$\Flcon_L=\set{\lkand,\lkand,\gor,\gand}$}.
+A \fasptext program then is a finite set of rules $r$ of the form $\head\lkif\body$, where $\head$ and $\body$ are formulas, whereas $\head$ must be $\flpnot$-free.
+A program whose body formulas contain $\lkand,\gand$ and $\flpnot$ only is called \define{strict}.
+
+For the semantics, \citet{Mushthofy2015} consider two types of truth-lattice: the infinite-valued lattice $([0,1],\lleq)$ and the finite-valued lattice $(\mathbb{Q}_k),\lleq$, with $\mathbb{Q}_k=\set{\frac{i}{k}\guard 0\leq i\leq k}$ for $k\geq1$.
+The corresponding truth functions of the connectives are
+\begin{align*}
+    \atom\flpcontf{\lkand}\atomalt & = \max(\atom+\atomalt-1,0), \\
+    \atom\flpcontf{\lkor}\atomalt  & = \min(\atom+\atomalt,1),   \\
+    \atom\flpcontf{\gor}\atomalt   & = \max(\atom,\atomalt),     \\
+    \atom\flpcontf{\gand}\atomalt  & = \min(\atom,\atomalt),     \\
+    \flpnotf\atom                  & = 1-\atom,                  \\
+    \atom\flpcontf{\lkif}\atomalt  & = \min(1-\atom+\atomalt,1),
+\end{align*}
+\rem{Mushthofa does not really define the "evaluation" of classical literals.}
+An interpretation $\fint$ is consistent iff $\fint(\atom)+\fint(\flpneg\atom)$ for each $\atom\in\Atoms$.
+Answer sets and ordering on interpretations are defined as expected via reduct and minimal models.
+\citet{Mushthofy2015} shows that any strict disjunctive \fasptext can be translated in an equivalent normal \fasptext using a \emph{shift} operator.
+A \fasptext program $\flp$ is called \define{self-reinforcing cycle-free} (SCRF) w.r.t. an atom $\atom$, iff there exists a stratification function $\stratf\colon\Atoms\to\mathbb{N}$, such that for every rule $r\in\flp$ which contains $\atom$, it holds that
+\begin{itemize}
+    \item $\stratf(x)\geq\stratf(y)$ for every $x\in\hr{r}$ and $y\in\br{r}$
+    \item if $r\equiv x\lkif y \lkor z$, then $\stratf(x)>\stratf(y)$ and $\stratf(x)>\stratf(z)$
+\end{itemize}
+Then \citet{Mushthofy2015} show that any SRCF program $\flp_1 = \flp\cup\set{a\lkor b\lkif c}$ can be \emph{shifted} into an equivalent normal \flptext program $\flp_2 = \flp\cup\set{a\lkif c \lkand \flpnot b, b\lkif c\flpnot a}$ that has the same answer sets.
+% Let $\flp_1 = \flp\cup\set{a\lkor b\lkif c}$ be any SRCF program w.r.t. $a,b$ and $c$, an interpretation $\fint$ is an answer set of $\flp_1$ iff it also an answer set of the \emph{shifted} program $\flp_2 = \flp\cup\set{a\lkif c \lkand \flpnot b, b\lkif c\flpnot a}$ \cite[Theorem 2]{Mushthofy2015}.
+
+It seems that the SRCF condition is too weak (as I understand the condition), as it only constraints the rules that contain a certain atom $\atom$, but a cycle might go throught rules not containing $\atom$.
+\begin{example}
+    Consider the program $\flp=\set{r_1\colon a\lkor b\lkif\frac12,\ r_2\colon b\lkif a,\ r_3\colon c\lkif b,\ r_4\colon a\lkif c\lkor c}$.
+    For each atom in $\flp$, we can find a stratification function w.r.t. $a$, $b$ and $c$, as can be seen in the following table
+    \begin{center}
+        \small
+        \begin{tabular}{@{}cccc@{}}
+            \hline
+            atom & rules         & constraints                              & $\stratf$ \\
+            \hline
+            $a$  & $r_1,r_2,r_4$ & $\stratf(b)\geq\stratf(a)>\stratf(c)$    & $(1,1,0)$ \\
+            $b$  & $r_1,r_2,r_3$ & $\stratf(c)\geq\stratf(b)\geq\stratf(a)$ & $(0,0,0)$ \\
+            $c$  & $r_3,r_4$     & $\stratf(a)>\stratf(c)\geq\stratf(b)$    & $(1,0,0)$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+    but the cycle $a\lkif c\lkor c$, $c\lkif b$, $b\lkif a$ contains a rule with a disjunction in the body and would need $\stratf(a)>\stratf(c)\geq\stratf(b)\geq\stratf(a)$, which no function satisfies.
+    Any interpretation $\fint$ satisfying the inequalities
+    \begin{align*}
+        \fint(a)            & \leq\fint(b)\leq\fint(c) & (r_2,r_3 \tand r_4 ) \\
+        \fint(a) + \fint(b) & \geq \frac12             & (r_1)                \\
+        \fint(a)            & \leq  \min(2*\fint(c),1) & (r_4)
+    \end{align*}
+    is a model of $\flp$, hence $\fint_1 = \set{a\mapsto1,b\mapsto1,c\mapsto1}$ is the only model.
+
+    Shifting $r_1$ replaces it by $r_1'\colon a\lkif\frac12\lkand\flpnot b$ and $r_1''\colon b\lkif\frac12\lkand\flpnot a$, so the shifted program is $\flp'=\set{r_1',r_1'',r_2,r_3,r_4}$.
+    Again, $\fint_1$ is the only model of $\flp'$.
+    However, the reduct of $\flp'$ w.r.t. this interpretation replaces $\flpnot a$ and $\flpnot b$ by $0$, so the zero interpretation satisfies it and the interpretation is not minimal.
+    The reduct of $\flp'$ w.r.t.\ $\fint_1=\set{a\mapsto1,b\mapsto1,c\mapsto1}$ is $\flp'^{\fint_1}=\bigl\{{a\lkif\frac12\lkand0},\ {b\lkif\frac12\lkand0},\ {b\lkif a},\ {c\lkif b},\ {a\lkif c\lkor c}\bigr\}$ with $\fint_0=\set{a\mapsto0,b\mapsto0,c\mapsto0}$ being its minimal model.
+
+    Hence $\flp'$ has no answer set, although $\flp$ meets the definition of SRCF w.r.t. $a$, $b$ and $c$.
+\end{example}
+
+TODO:
+\begin{itemize}
+    \item Prove shifting for stratifiable programs
+    \item Define semantics with deterministic operator
+    \item Generalize to n-ary t-norms and co-t-norms
+    \item Link strict programs to LNNs
+\end{itemize}

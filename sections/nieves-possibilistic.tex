@@ -18,16 +18,21 @@ A \define{possibilistic disjunctive logic program} $\pflp$ is a tuple $\tuple{(\
 Its projection is $\proj[\pflp] = \set{ \proj[\prule] \guard \prule\in\pRules }$ (which is an extended disjunctive program).
 
 (Complete) Lattice of interest: $(\Pint,\possleq)$, where $\Pint\subseteq\Pint'=\pset{\Atoms\times\lset}$ is "the finite set of all the possibilistic atom sets induced by a set of atoms $\Atoms$ and $\lset$"
-\[
-    \Pint = \Pint'\setminus\set{\pint\in\Pint\guard \exists\atom\in\Atoms\colon\card{\set{(\atom,\lelem)\mid (\atom,\lelem)\in\Pint}}\geq2}
-\]
+\begin{multline*}
+    \Pint = \Pint'\setminus\Bigl\{\pint\in\Pint\mid\\
+    \exists\atom\in\Atoms\colon\card{\set{(\atom,\lelem)\mid (\atom,\lelem)\in\Pint}}\geq2\Bigr\}
+\end{multline*}
 and $\forall \pint,\pintalt\in\Pint$
+\begingroup\small
 \begin{align*}
-    \pint\possglb\pintalt  & = \set{(\atom,\lelem\glb\lelemalt)\guard (\atom,\lelem)\in\pint \tand (\atom,\lelemalt)\in\pintalt}                                                                                                       \\
-    \pint\posslub\pintalt  & = \set{(\atom,\lelem\lub\lelemalt)\guard (\atom,\lelem)\in\pint \tand (\atom,\lelemalt)\in\pintalt} \cup \set{(\atom,\lelem)\guard (\atom,\lelem)\in\pint \tand \atom\notin\proj[\pintalt]}               \\
-                           & \phantom{=}            \cup \set{(\atom,\lelem)\guard (\atom,\lelem)\in\pint \tand \atom\notin\proj[\pint]}                                                                                               \\
-    \pint \preceq \pintalt & \iff \proj[\pint] \subseteq \proj[\pintalt] \tand \forall \atom\in\Atoms\tand\forall\lelem,\lelemalt\in\lset\colon (\atom,\lelem)\in\pint \tand (\atom,\lelemalt)\in\pintalt\timplies \lelem\leq\lelemalt
+    \pint\possglb\pintalt  & = \set{(\atom,\lelem\glb\lelemalt)\guard (\atom,\lelem)\in\pint, (\atom,\lelemalt)\in\pintalt}                    \\
+    \pint\posslub\pintalt  & = \set{(\atom,\lelem\lub\lelemalt)\guard (\atom,\lelem)\in\pint, (\atom,\lelemalt)\in\pintalt}                    \\
+                           & \phantom{=}\cup \set{(\atom,\lelem)\guard (\atom,\lelem)\in\pint, \atom\notin\proj[\pintalt]}                    \\
+                           & \phantom{=}\cup \set{(\atom,\lelem)\guard (\atom,\lelem)\in\pint, \atom\notin\proj[\pint]}                       \\
+    \pint \possleq \pintalt & \iff \proj[\pint] \subseteq \proj[\pintalt] \tand \forall \atom\in\Atoms,\forall\lelem,\lelemalt\in\lset\colon     \\
+                           & \phantom{\iff}\quad (\atom,\lelem)\in\pint \tand (\atom,\lelemalt)\in\pintalt\timplies \lelem\leq\lelemalt
 \end{align*}
+\endgroup
 
 \begin{proposition}
     The map $\PintToFint\colon\Pint\to\Fint$ defined by
@@ -54,9 +59,10 @@ and $\forall \pint,\pintalt\in\Pint$
 
 Let $\pflp = \tuple{(\lset,\leq),\pRules}$ be a possibilistic disjunctive logic program and $\Atomsalt\subseteq\Atoms$ a set of atoms.
 The \define{reduction of $\pflp$ by $\Atomsalt$}, denoted $\pred{\pflp}{\Atomsalt}$, is the positive possibilistic disjunctive logic program
-\[
-    \pred{\pflp}{\Atomsalt} \eqdef \set{\projrule[\prule] : \head(\proj[\prule])\cap\Atomsalt \lpif \pbody(\proj[\prule]) \guard \prule\in\pRules,\ \head(\proj[\prule])\cap\Atomsalt\neq\emptyset,\ \nbody(\proj[\prule])\cap\Atomsalt=\emptyset,\ \pbody(\proj[\prule])\subseteq\Atomsalt },
-\]
+\begin{multline*}
+    \pred{\pflp}{\Atomsalt} \eqdef \bigl\{\projrule[\prule] : \head(\proj[\prule])\cap\Atomsalt \lpif \pbody(\proj[\prule]) \mid \prule\in\pRules,\\
+    \head(\proj[\prule])\cap\Atomsalt\neq\emptyset,\ \nbody(\proj[\prule])\cap\Atomsalt=\emptyset,\ \pbody(\proj[\prule])\subseteq\Atomsalt \bigr\},
+\end{multline*}
 where $\proj[\prule]$ has the form $\head(\proj[\prule])\lpif\pbody(\proj[\prule]),\nbody(\proj[\prule])$.
 
 Note that this reduction differs from the classical Gelfond-Lifschitz reduct, since it trims only the heads of "surviving" rules and considers only rules, where the positive body is "satisfied".
@@ -104,18 +110,20 @@ For a possibilistic positive disjunctive logic program $\pflp$ the operator $\pl
 \]
 
 For $\atom\in\Atoms$, let $\pFacts{\pflp}{\atom}\eqdef\set{\prule\in\pflp \guard \prule = \pnec:\atom \in\pflp}$ be the \define{possibilistic facts} for $\atom$ in $\pflp$ and
-\[
-    \Semmin{\pflp} \eqdef \set{ (\atom,\lelem) \guard \atom\in\Atoms,\ \pFacts{\pflp}{\atom}\neq\emptyset,\ \lelem = \biglub\set{\projrule[\prule] \guard \prule\in\pFacts{\pflp}{\atom}} }.
-\]
+\begin{multline*}
+    \Semmin{\pflp} \eqdef \bigl\{ (\atom,\lelem) \mid \atom\in\Atoms,\ \pFacts{\pflp}{\atom}\neq\emptyset,\\
+    \lelem = \biglub\set{\projrule[\prule] \mid \prule\in\pFacts{\pflp}{\atom}} \bigr\}.
+\end{multline*}
 the set of "optimal necessity values" for the possibilistic atoms occurring in $\pflp$.
 
 Then the semantics for a possibilistic disjunctive logic program $\pflp$ is defined as follows:
 Let $\pint$ be a set of possibilistic atoms such that $\proj[\pint]$ is an answer set of $\proj[\pflp]$. Then $\pint$ is a \define{possibilistic-$\plpop$ answer set} of $\pflp$ if and only if $\pint = \Semmin{\lfp(\plpop_{\pred{\pflp}{\proj[\pint]}}})$.
 
 Let $\pflp$ be a possibilistic programs. We translate $\pflp$ into a fuzzy logic program $\PosToFuz{\pflp}$ via
-\[
-    \PosToFuz{\pflp} \eqdef \set{\atom_1\flpor\dots\flpor\atom_n\flpif{\lelem}\body\mid \lelem : \atom_1\flpor\dots\flpor\atom_n\lpif\body \in \pflp}
-\]
+\begin{multline*}
+    \PosToFuz{\pflp} \eqdef \bigl\{\atom_1\flpor\dots\flpor\atom_n\flpif{\lelem}\body\mid\\
+    \lelem : \atom_1\flpor\dots\flpor\atom_n\lpif\body \in \pflp\bigr\}
+\end{multline*}
 %"($\body$)" in flp muss noch "diskretisiert" werden
 \begin{proposition}
     $\lpap[\PosToFuz{\pflp}](\PintToFint(\Semmin{\pflpalt)})\leq\PintToFint(\Semmin{\plpop_{\pflp}(\pflpalt))}$, if $\pflp\subseteq\pflpalt$.
